@@ -1,6 +1,13 @@
 package org.jcontactmanager.model;
 
 public class ContactInformation {
+    public String name;
+    public String address;
+    public String city;
+    public String country;
+    public String note;
+    public String website;
+
     public String getName() {
         return name;
     }
@@ -48,12 +55,4 @@ public class ContactInformation {
     public void setWebsite(String website) {
         this.website = website;
     }
-
-    public String name;
-    public String address;
-    public String city;
-    public String country;
-    public String note;
-    public String website;
-
 }
