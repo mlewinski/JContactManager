@@ -3,12 +3,12 @@ package org.jcontactmanager.model;
 import javafx.beans.property.StringProperty;
 
 public class ContactInformation {
-    public StringProperty name;
-    public StringProperty address;
-    public StringProperty city;
-    public StringProperty country;
-    public StringProperty note;
-    public StringProperty website;
+    protected StringProperty name;
+    protected StringProperty address;
+    protected StringProperty city;
+    protected StringProperty country;
+    protected StringProperty note;
+    protected StringProperty website;
 
     public String getName() {
         return name.get();
