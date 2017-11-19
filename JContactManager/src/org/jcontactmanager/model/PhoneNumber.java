@@ -21,12 +21,12 @@ public class PhoneNumber extends Communicator{
         this.number.set(number);
     }
 
-    public StringProperty getNetworkProperty() {
-        return Network;
-    }
-
     public String getNetwork() {
         return Network.get();
+    }
+
+    public StringProperty getNetworkProperty() {
+        return Network;
     }
 
     public void setNetwork(String network) {
