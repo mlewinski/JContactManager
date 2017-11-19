@@ -6,8 +6,8 @@ import javafx.beans.property.StringProperty;
  * Created by mlewinski on 11/10/17.
  */
 public class Communicator {
-    public StringProperty label;
-    public StringProperty note;
+    protected StringProperty label;
+    protected StringProperty note;
 
     public String getLabel() {
         return label.get();
