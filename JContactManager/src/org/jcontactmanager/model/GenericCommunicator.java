@@ -1,25 +1,27 @@
 package org.jcontactmanager.model;
 
+import javafx.beans.property.StringProperty;
+
 /**
  * Created by mlewinski on 11/10/17.
  */
 public class GenericCommunicator extends Communicator{
-    public String address;
-    public String protocol;
+    public StringProperty address;
+    public StringProperty protocol;
 
-    public String getAddress() {
+    public StringProperty getAddressProperty() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(StringProperty address) {
         this.address = address;
     }
 
-    public String getProtocol() {
+    public StringProperty getProtocolProperty() {
         return protocol;
     }
 
-    public void setProtocol(String protocol) {
+    public void setProtocol(StringProperty protocol) {
         this.protocol = protocol;
     }
 }
