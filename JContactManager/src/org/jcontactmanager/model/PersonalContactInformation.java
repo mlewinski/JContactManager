@@ -1,22 +1,28 @@
 package org.jcontactmanager.model;
 
-public class PersonalContactInformation extends ContactInformation {
-    public String nickname;
-    public String gender;
+import javafx.beans.property.StringProperty;
 
-    public String getNickname() {
+/**
+ * Created by mdembiczak on 11/10/17.
+ */
+
+public class PersonalContactInformation extends ContactInformation {
+    public StringProperty nickname;
+    public StringProperty gender;
+
+    public StringProperty getNicknameProperty() {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
+    public void setNicknameProperty(StringProperty nickname) {
         this.nickname = nickname;
     }
 
-    public String getGender() {
+    public StringProperty getGenderProperty() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(StringProperty gender) {
         this.gender = gender;
     }
 }
