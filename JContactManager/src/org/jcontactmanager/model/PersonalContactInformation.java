@@ -1,5 +1,6 @@
 package org.jcontactmanager.model;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -7,8 +8,22 @@ import javafx.beans.property.StringProperty;
  */
 
 public class PersonalContactInformation extends ContactInformation {
-    public StringProperty nickname;
-    public StringProperty gender;
+    private IntegerProperty id;
+    private StringProperty nickname;
+    private StringProperty gender;
+
+    @Override
+    public int getId() {
+        return id.get();
+    }
+
+    public IntegerProperty getIdProperty() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
 
     public StringProperty getNicknameProperty() {
         return nickname;
@@ -16,6 +31,15 @@ public class PersonalContactInformation extends ContactInformation {
 
     public void setNicknameProperty(StringProperty nickname) {
         this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return nickname.get();
+    }
+
+
+    public String getGender() {
+        return gender.get();
     }
 
     public StringProperty getGenderProperty() {
