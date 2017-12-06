@@ -1,14 +1,28 @@
 package org.jcontactmanager.model;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
 public class ContactInformation {
+    protected IntegerProperty id;
     protected StringProperty name;
     protected StringProperty address;
     protected StringProperty city;
     protected StringProperty country;
     protected StringProperty note;
     protected StringProperty website;
+
+    public int getId() {
+        return id.get();
+    }
+
+    public IntegerProperty getIdProperty() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
+    }
 
     public String getName() {
         return name.get();
