@@ -10,7 +10,7 @@ import java.util.List;
  * Created by mlewinski on 11/10/17.
  */
 public class Contact {
-    private IntegerProperty ID;
+    private IntegerProperty id;
     private IntegerProperty ownerID;
     private ObjectProperty<List<Email>> emailAddresses;
     private ObjectProperty<List<PhoneNumber>> phoneNumbers;
@@ -18,16 +18,16 @@ public class Contact {
     private ObjectProperty<ContactInformation> contactInformation;
     private ObjectProperty<Date> created;
 
-    public int getID() {
-        return ID.get();
+    public int getId() {
+        return id.get();
     }
 
-    public IntegerProperty getIDProperty() {
-        return ID;
+    public IntegerProperty getIdProperty() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID.set(ID);
+    public void setId(int id) {
+        this.id.set(id);
     }
 
     public int getOwnerID() {
@@ -35,7 +35,7 @@ public class Contact {
     }
 
     public IntegerProperty getOwnerIDProperty() {
-        return ID;
+        return id;
     }
 
     public void setOwnerID(int ownerID) {
