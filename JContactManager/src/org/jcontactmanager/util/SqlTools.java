@@ -13,7 +13,8 @@ public class SqlTools {
                         .replace("%","\\%")
                         .replace("_", "\\_")
                         .replace("\b", "\\b")
-                        .replace("\t","\\t");
+                        .replace("\t","\\t")
+                        .replaceAll("(?i)union", "");
         return sanitizedQuery;
     }
 }
