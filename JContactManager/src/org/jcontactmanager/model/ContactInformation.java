@@ -3,7 +3,11 @@ package org.jcontactmanager.model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
-public class ContactInformation {
+/*
+    For future use
+ */
+
+public abstract class ContactInformation implements IStoreable {
     protected IntegerProperty id;
     protected StringProperty name;
     protected StringProperty address;
@@ -95,4 +99,5 @@ public class ContactInformation {
     public void setWebsite(String website) {
         this.website.set(website);
     }
+
 }

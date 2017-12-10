@@ -6,8 +6,9 @@ import javafx.beans.property.StringProperty;
 /**
  * Created by mlewinski on 11/10/17.
  */
-public class Communicator {
+public abstract class Communicator implements IStoreable {
     protected IntegerProperty id;
+    protected IntegerProperty ownerID;
     protected StringProperty label;
     protected StringProperty note;
     protected StringProperty category;
@@ -59,4 +60,5 @@ public class Communicator {
     public void setNote(String note) {
         this.note.set(note);
     }
+
 }
