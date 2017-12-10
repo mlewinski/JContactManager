@@ -47,4 +47,24 @@ public class PhoneNumber extends Communicator{
     public void setNetwork(String network) {
         Network.set(network);
     }
+
+    @Override
+    public String saveQuery() {
+        return null;
+    }
+
+    @Override
+    public String updateQuery() {
+        return null;
+    }
+
+    @Override
+    public String deleteQuery() {
+        return null;
+    }
+
+    @Override
+    public String selectQuery() {
+        return null;
+    }
 }

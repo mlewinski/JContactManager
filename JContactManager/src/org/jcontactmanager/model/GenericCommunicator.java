@@ -48,4 +48,23 @@ public class GenericCommunicator extends Communicator{
         return protocol.get();
     }
 
+    @Override
+    public String saveQuery() {
+        return null;
+    }
+
+    @Override
+    public String updateQuery() {
+        return null;
+    }
+
+    @Override
+    public String deleteQuery() {
+        return null;
+    }
+
+    @Override
+    public String selectQuery() {
+        return null;
+    }
 }

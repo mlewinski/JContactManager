@@ -12,7 +12,7 @@ import org.jcontactmanager.util.SqlTools;
 /*
     TODO : zmienić nazwy tabel i kolumn
  */
-public class Email extends Communicator implements IStoreable{
+public class Email extends Communicator{
     private IntegerProperty id;
     private StringProperty emailAddress;
 
@@ -39,19 +39,23 @@ public class Email extends Communicator implements IStoreable{
         this.emailAddress.set(SqlTools.sanitizeQuery(emailAddress));
     }
 
-    public String saveQuery(){
-        return "INSERT INTO Emails(ID, EmailAddress) VALUES (" + this.id.getValue() + ", '" + emailAddress.getValue() + "')";
+    @Override
+    public String saveQuery() {
+        return null;
     }
 
-    public String updateQuery(){
-        return "UPDATE Emails SET EmailAddress=" + emailAddress.getValue() + " WHERE ID=" + id.getValue();
+    @Override
+    public String updateQuery() {
+        return null;
     }
 
-    public String deleteQuery(){
-        return "DELETE * FROM Emails WHERE ID=" + id.getValue();
+    @Override
+    public String deleteQuery() {
+        return null;
     }
 
-    public String selectQuery(){
-        return "DELETE * FROM Emails WHERE ID=" + id.getValue();
+    @Override
+    public String selectQuery() {
+        return null;
     }
 }

@@ -9,9 +9,8 @@ import java.util.List;
 /**
  * Created by mlewinski on 11/10/17.
  */
-public class Contact {
+public class Contact implements IStoreable {
     private IntegerProperty id;
-    private IntegerProperty ownerID;
     private ObjectProperty<List<Email>> emailAddresses;
     private ObjectProperty<List<PhoneNumber>> phoneNumbers;
     private ObjectProperty<List<GenericCommunicator>> otherCommunicators;
@@ -28,18 +27,6 @@ public class Contact {
 
     public void setId(int id) {
         this.id.set(id);
-    }
-
-    public int getOwnerID() {
-        return ownerID.get();
-    }
-
-    public IntegerProperty getOwnerIDProperty() {
-        return id;
-    }
-
-    public void setOwnerID(int ownerID) {
-        this.ownerID.set(ownerID);
     }
 
     public List<Email> getEmailAddresses() {
@@ -100,5 +87,25 @@ public class Contact {
 
     public void setCreated(Date created) {
         this.created.set(created);
+    }
+
+    @Override
+    public String saveQuery() {
+        return null;
+    }
+
+    @Override
+    public String updateQuery() {
+        return null;
+    }
+
+    @Override
+    public String deleteQuery() {
+        return null;
+    }
+
+    @Override
+    public String selectQuery() {
+        return null;
     }
 }

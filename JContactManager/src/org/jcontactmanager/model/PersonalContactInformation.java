@@ -49,4 +49,24 @@ public class PersonalContactInformation extends ContactInformation {
     public void setGender(StringProperty gender) {
         this.gender = gender;
     }
+
+    @Override
+    public String saveQuery() {
+        return null;
+    }
+
+    @Override
+    public String updateQuery() {
+        return null;
+    }
+
+    @Override
+    public String deleteQuery() {
+        return null;
+    }
+
+    @Override
+    public String selectQuery() {
+        return null;
+    }
 }
