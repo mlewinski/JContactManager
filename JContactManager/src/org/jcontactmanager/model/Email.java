@@ -2,11 +2,17 @@ package org.jcontactmanager.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
+import org.jcontactmanager.util.SqlTools;
+
 
 /**
  * Created by mlewinski on 11/10/17.
  */
-public class Email extends Communicator{
+
+/*
+    TODO : zmienić nazwy tabel i kolumn
+ */
+public class Email extends Communicator implements IStoreable{
     private IntegerProperty id;
     private StringProperty emailAddress;
 
@@ -29,7 +35,23 @@ public class Email extends Communicator{
         return emailAddress;
     }
 
-    public void setEmailAddress(StringProperty emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress.set(SqlTools.sanitizeQuery(emailAddress));
+    }
+
+    public String saveQuery(){
+        return "INSERT INTO Emails(ID, EmailAddress) VALUES (" + this.id.getValue() + ", '" + emailAddress.getValue() + "')";
+    }
+
+    public String updateQuery(){
+        return "UPDATE Emails SET EmailAddress=" + emailAddress.getValue() + " WHERE ID=" + id.getValue();
+    }
+
+    public String deleteQuery(){
+        return "DELETE * FROM Emails WHERE ID=" + id.getValue();
+    }
+
+    public String selectQuery(){
+        return "DELETE * FROM Emails WHERE ID=" + id.getValue();
     }
 }
