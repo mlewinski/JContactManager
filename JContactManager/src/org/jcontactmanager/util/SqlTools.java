@@ -6,7 +6,7 @@ public class SqlTools {
      * @param query Query to be sanitized
      * @return Sanitized query
      */
-    public static String removeSpecialChars(String query){
+    public static String sanitizeQuery(String query){
         String sanitizedQuery = query
                         .replace("\"", "\\\"")
                         .replace("'","\\'")
