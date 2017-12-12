@@ -72,3 +72,4 @@ crashlytics-build.properties
 fabric.properties
 
 JContactManager/\.idea/workspace\.xml
+JContactManager/resources/*.properties
