@@ -122,8 +122,8 @@ public class ContactInformation implements IStoreable {
         return gender;
     }
 
-    public void setGender(StringProperty gender) {
-        this.gender = gender;
+    public void setGender(String gender) {
+        this.gender.setValue(gender);
     }
 
     @Override
