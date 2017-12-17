@@ -15,7 +15,6 @@ public class Contact implements IStoreable {
     private ObjectProperty<List<PhoneNumber>> phoneNumbers;
     private ObjectProperty<List<GenericCommunicator>> otherCommunicators;
     private ObjectProperty<ContactInformation> contactInformation;
-    private ObjectProperty<Date> created;
 
     public int getId() {
         return id.get();
@@ -75,18 +74,6 @@ public class Contact implements IStoreable {
 
     public void setContactInformation(ContactInformation contactInformation) {
         this.contactInformation.set(contactInformation);
-    }
-
-    public Date getCreated() {
-        return created.get();
-    }
-
-    public ObjectProperty<Date> getCreatedProperty() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created.set(created);
     }
 
     @Override
