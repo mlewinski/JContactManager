@@ -105,8 +105,8 @@ public class ContactInformation implements IStoreable {
         return nickname;
     }
 
-    public void setNicknameProperty(StringProperty nickname) {
-        this.nickname = nickname;
+    public void setNickname(String nickname) {
+        this.nickname.setValue(nickname);
     }
 
     public String getNickname() {
