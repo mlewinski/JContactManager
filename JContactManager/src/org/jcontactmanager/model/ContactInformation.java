@@ -7,14 +7,16 @@ import javafx.beans.property.StringProperty;
     For future use
  */
 
-public abstract class ContactInformation implements IStoreable {
-    protected IntegerProperty id;
-    protected StringProperty name;
-    protected StringProperty address;
-    protected StringProperty city;
-    protected StringProperty country;
-    protected StringProperty note;
-    protected StringProperty website;
+public class ContactInformation implements IStoreable {
+    private IntegerProperty id;
+    private StringProperty name;
+    private StringProperty nickname;
+    private StringProperty gender;
+    private StringProperty address;
+    private StringProperty city;
+    private StringProperty country;
+    private StringProperty note;
+    private StringProperty website;
 
     public int getId() {
         return id.get();
@@ -98,6 +100,50 @@ public abstract class ContactInformation implements IStoreable {
 
     public void setWebsite(String website) {
         this.website.set(website);
+    }
+    public StringProperty getNicknameProperty() {
+        return nickname;
+    }
+
+    public void setNicknameProperty(StringProperty nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return nickname.get();
+    }
+
+
+    public String getGender() {
+        return gender.get();
+    }
+
+    public StringProperty getGenderProperty() {
+        return gender;
+    }
+
+    public void setGender(StringProperty gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public String saveQuery() {
+        return null;
+    }
+
+    @Override
+    public String updateQuery() {
+        return null;
+    }
+
+    @Override
+    public String deleteQuery() {
+        return null;
+    }
+
+    @Override
+    public String selectQuery() {
+        return null;
     }
 
 }
