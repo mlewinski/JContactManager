@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="315.0" prefWidth="119.0" styleClass="vpane" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="1.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="1.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="1.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox styleClass="hpane" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="40.0" prefWidth="580.0" styleClass="title" text="Contact Manager" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
