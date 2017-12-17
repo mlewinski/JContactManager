@@ -28,8 +28,8 @@ public class GenericCommunicator extends Communicator{
         return address;
     }
 
-    public void setAddress(StringProperty address) {
-        this.address = address;
+    public void setAddress(String address) {
+        this.address.setValue(address);
     }
 
     public String getAddress() {
@@ -40,8 +40,8 @@ public class GenericCommunicator extends Communicator{
         return protocol;
     }
 
-    public void setProtocol(StringProperty protocol) {
-        this.protocol = protocol;
+    public void setProtocol(String protocol) {
+        this.protocol.setValue(protocol);
     }
 
     public String getProtocol() {
