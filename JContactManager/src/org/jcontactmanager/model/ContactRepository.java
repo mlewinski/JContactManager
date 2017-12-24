@@ -71,7 +71,7 @@ public class ContactRepository {
                             genericCommunicatorList.add(genericCommunicator);
                         }
                     }
-                    ContactInformation contactInformation = new ContactInformation();
+                    ContactInformation contactInformation = new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"); //TEST DATA!!!!
                     try(ResultSet contactInfo = stm.executeQuery("SELECT * FROM `ContactInformations` WHERE OwnerID="+contactID)){
                         while(contactInfo.next()){
                             contactInformation.setId(contactInfo.getInt("ID"));
