@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="315.0" prefWidth="119.0" styleClass="vpane" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Home">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Contacts">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="1.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Statistics">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="1.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Button">
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="110.0" text="Settings">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="1.0" />
                </VBox.margin>
