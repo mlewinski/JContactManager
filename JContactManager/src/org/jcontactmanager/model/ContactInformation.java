@@ -1,6 +1,8 @@
 package org.jcontactmanager.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /*
@@ -17,6 +19,22 @@ public class ContactInformation implements IStoreable {
     private StringProperty country;
     private StringProperty note;
     private StringProperty website;
+
+    public ContactInformation() {
+        this(0,null,null,null,null,null,null,null,null);
+    }
+
+    public ContactInformation(int id, String name, String nickname, String gender, String address, String city, String country, String note, String website) {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.nickname = new SimpleStringProperty(nickname);
+        this.gender = new SimpleStringProperty(gender);
+        this.address = new SimpleStringProperty(address);
+        this.city = new SimpleStringProperty(city);
+        this.country = new SimpleStringProperty(country);
+        this.note = new SimpleStringProperty(note);
+        this.website = new SimpleStringProperty(website);
+    }
 
     public int getId() {
         return id.get();
