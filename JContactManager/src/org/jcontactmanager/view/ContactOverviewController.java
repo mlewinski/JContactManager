@@ -4,27 +4,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.jcontactmanager.JavaFxMain;
+import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactInformation;
 
 
 public class ContactOverviewController {
 
     @FXML
-    private TableView<ContactInformation> contactTable;
+    private TableView<Contact> contactTable;
     @FXML
-    private TableColumn<ContactInformation, Integer> idColumn;
+    private TableColumn<Contact, Integer> idColumn;
     @FXML
-    private TableColumn<ContactInformation, String> nicknameColumn;
+    private TableColumn<Contact, String> nicknameColumn;
     @FXML
-    private TableColumn<ContactInformation, String> nameColumn;
+    private TableColumn<Contact, String> nameColumn;
     @FXML
-    private TableColumn<ContactInformation, String> genderColumn;
+    private TableColumn<Contact, String> genderColumn;
     @FXML
-    private TableColumn<ContactInformation, String> cityColumn;
+    private TableColumn<Contact, String> cityColumn;
     @FXML
-    private TableColumn<ContactInformation, String> countryColumn;
+    private TableColumn<Contact, String> countryColumn;
     @FXML
-    private TableColumn<ContactInformation, String> websiteColumn;
+    private TableColumn<Contact, String> websiteColumn;
 
     private JavaFxMain javaFxMain;
 
@@ -36,12 +37,12 @@ public class ContactOverviewController {
     @FXML
     private void initialize(){
         //idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty()); //parse to other
-        nicknameColumn.setCellValueFactory(cellData -> cellData.getValue().getNicknameProperty());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        genderColumn.setCellValueFactory(cellData -> cellData.getValue().getGenderProperty());
-        cityColumn.setCellValueFactory(cellData -> cellData.getValue().getCityProperty());
-        countryColumn.setCellValueFactory(cellData -> cellData.getValue().getCountryProperty());
-        websiteColumn.setCellValueFactory(cellData -> cellData.getValue().getWebsiteProperty());
+        nicknameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNicknameProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNameProperty());
+        genderColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getGenderProperty());
+        cityColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getCityProperty());
+        countryColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getCountryProperty());
+        websiteColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getWebsiteProperty());
 
     }
 
