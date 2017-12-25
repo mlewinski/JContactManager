@@ -1,5 +1,9 @@
 package org.jcontactmanager.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+
 import java.nio.file.*;
 import java.sql.*;
 import java.io.*;
@@ -8,10 +12,25 @@ import java.util.*;
 
 public class ContactRepository {
 
-    private List<Contact> _repository;
+    private ObservableList<Contact> _repository;
 
     public ContactRepository(){
-        _repository = new ArrayList<>(128);
+
+        _repository = FXCollections.observableArrayList();
+        try{
+            fetchAllContacts();
+        } catch(SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Problem with the database");
+            alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
+            alert.setContentText(e.getMessage());
+        }
+        catch(IOException ex){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("The database config file cannot be accessed");
+            alert.setHeaderText("The application cannot find the database.properties file or it is inaccessible. Please generate a new config file using Settings.");
+            alert.setContentText(ex.getMessage());
+        }
     }
 
     public void update(String sql){
