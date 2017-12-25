@@ -9,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactInformation;
+import org.jcontactmanager.model.ContactRepository;
 
 import java.io.IOException;
 
@@ -22,12 +24,16 @@ public class JavaFxMain extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    private ObservableList<ContactInformation> contactInformationData = FXCollections.observableArrayList();
+    private ContactRepository repository;
+    private ObservableList<Contact> contactInformationData = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) {
+        repository = new ContactRepository();
+        contactInformationData = repository.getRepositoryReference();
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("JContactManager");
+
 
         initRootLayout();
 
@@ -36,10 +42,10 @@ public class JavaFxMain extends Application {
     }
 
     public JavaFxMain(){
-        contactInformationData.add(new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"));
+        //contactInformationData.add(new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"));
     }
 
-    public ObservableList<ContactInformation> getContactInformationData() {
+    public ObservableList<Contact> getContactInformationData() {
         return contactInformationData;
     }
 
