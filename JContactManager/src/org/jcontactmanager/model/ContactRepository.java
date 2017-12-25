@@ -33,6 +33,10 @@ public class ContactRepository {
         }
     }
 
+    public ObservableList<Contact> getRepositoryReference(){
+        return _repository;
+    }
+
     public void update(String sql){
 
     }
