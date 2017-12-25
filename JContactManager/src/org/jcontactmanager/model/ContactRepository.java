@@ -15,22 +15,8 @@ public class ContactRepository {
     private ObservableList<Contact> _repository;
 
     public ContactRepository(){
-
         _repository = FXCollections.observableArrayList();
-        try{
-            fetchAllContacts();
-        } catch(SQLException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Problem with the database");
-            alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
-            alert.setContentText(e.getMessage());
-        }
-        catch(IOException ex){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("The database config file cannot be accessed");
-            alert.setHeaderText("The application cannot find the database.properties file or it is inaccessible. Please generate a new config file using Settings.");
-            alert.setContentText(ex.getMessage());
-        }
+        loadContacts();
     }
 
     public ObservableList<Contact> getRepositoryReference(){
@@ -47,6 +33,25 @@ public class ContactRepository {
 
     public void save(){
 
+    }
+
+    private void loadContacts(){
+        try{
+            fetchAllContacts();
+        } catch(SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Problem with the database");
+            alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+        catch(IOException ex){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("The database config file cannot be accessed");
+            alert.setHeaderText("The application cannot find the database.properties file or it is inaccessible. Please generate a new config file using Settings.");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
+        }
     }
 
     private void fetchAllContacts() throws SQLException, IOException{
