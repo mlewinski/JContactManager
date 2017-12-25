@@ -29,8 +29,6 @@ public class JavaFxMain extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        repository = new ContactRepository();
-        contactInformationData = repository.getRepositoryReference();
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("JContactManager");
 
@@ -43,6 +41,8 @@ public class JavaFxMain extends Application {
 
     public JavaFxMain(){
         //contactInformationData.add(new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"));
+        repository = new ContactRepository();
+        contactInformationData = repository.getRepositoryReference();
     }
 
     public ObservableList<Contact> getContactInformationData() {
