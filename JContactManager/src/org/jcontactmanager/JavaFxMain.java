@@ -82,6 +82,8 @@ public class JavaFxMain extends Application {
                 }
             }
 
+            this.primaryStage.getIcons().add(new Image("file:resources/icons/app_icon.png"));
+            
             //Show the scene containing root layout
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
