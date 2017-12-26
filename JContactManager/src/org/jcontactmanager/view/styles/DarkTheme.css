@@ -109,12 +109,12 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: rgba(58,58,58,0.8);
 }
 
 .button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: #1d1d1d;
+    -fx-background-color: rgba(0,0,0,0.5);
+    -fx-text-fill: #434343;
 }
 
 .button:focused {
@@ -145,7 +145,7 @@
 
 .vpane
 {
-    -fx-background-color: rgba(0,0,0,0.3);
+    -fx-background-color: rgba(0,0,0,0.9);
 
 }
 
@@ -153,4 +153,53 @@
      -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
      -fx-font-size: 20pt;
      -fx-text-fill: white;
+}
+
+#button_home{
+    -fx-graphic: url('icons/home.png');
+    -fx-graphic-text-gap: 30px;
+}
+#button_contacts{
+    -fx-graphic: url('icons/contacts.png');
+    -fx-graphic-text-gap: 30px;
+}
+#button_statistics{
+    -fx-graphic: url('icons/statistics.png');
+    -fx-graphic-text-gap: 30px;
+}
+#button_settings{
+    -fx-graphic: url('icons/settings.png');
+    -fx-graphic-text-gap: 30px;
+}
+#button_home:hover{
+    -fx-graphic: url('icons/home_hover.png');
+    -fx-graphic-text-gap: 50px;
+}
+#button_contacts:hover{
+    -fx-graphic: url('icons/contacts_hover.png');
+    -fx-graphic-text-gap: 50px;
+}
+#button_statistics:hover{
+    -fx-graphic: url('icons/statistics_hover.png');
+    -fx-graphic-text-gap: 50px;
+}
+#button_settings:hover{
+    -fx-graphic: url('icons/settings_hover.png');
+    -fx-graphic-text-gap: 50px;
+}
+#button_home:pressed:focused{
+    -fx-graphic: url('icons/home_selected.png');
+    -fx-graphic-text-gap: 50px;
+}
+#button_contacts:pressed:focused{
+    -fx-graphic: url('icons/contacts_selected.png');
+    -fx-graphic-text-gap: 50px;
+}
+#button_statistics:pressed:focused{
+    -fx-graphic: url('icons/statistics_selected.png');
+    -fx-graphic-text-gap: 50px;
+}
+#button_settings:pressed:focused{
+    -fx-graphic: url('icons/settings_selected.png');
+    -fx-graphic-text-gap: 50px;
 }
