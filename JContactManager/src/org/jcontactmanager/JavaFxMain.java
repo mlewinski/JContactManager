@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactInformation;
 import org.jcontactmanager.model.ContactRepository;
+import org.jcontactmanager.view.RootLayoutController;
 
 import java.io.*;
 import java.util.Properties;
@@ -23,13 +24,15 @@ public class JavaFxMain extends Application {
         launch(args);
     }
 
-    private Properties applicationProperties;
+    public Properties applicationProperties;
 
     private Stage primaryStage;
     private BorderPane rootLayout;
 
     private ContactRepository repository;
     private ObservableList<Contact> contactInformationData = FXCollections.observableArrayList();
+
+    private RootLayoutController rootLayoutController;
 
     @Override
     public void start(Stage primaryStage) {
@@ -41,7 +44,7 @@ public class JavaFxMain extends Application {
         if(applicationProperties==null || !applicationProperties.containsKey("env.first_run") || applicationProperties.getProperty("env.first_run")=="true"){
             showSettings();
             try {
-                applicationProperties.setProperty("env.first_run", "true");
+                //applicationProperties.setProperty("env.first_run", "false");
                 applicationProperties.store(new FileOutputStream("resources/app.properties"), null);
             }
             catch (IOException e){
@@ -82,6 +85,13 @@ public class JavaFxMain extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(JavaFxMain.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
+            rootLayoutController = loader.getController();
+            if(applicationProperties == null || !applicationProperties.containsKey("env.username")) {
+                rootLayoutController.setUsername("---");
+            }
+            else{
+                rootLayoutController.setUsername(applicationProperties.getProperty("env.username"));
+            }
 
             if(applicationProperties.containsKey("view.background")) {
                 File f = new File("resources/" + applicationProperties.getProperty("view.background"));
@@ -111,6 +121,7 @@ public class JavaFxMain extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(JavaFxMain.class.getResource("view/ContactOverview.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
+            rootLayoutController.setPathLabel("Contacts");
 
             rootLayout.setCenter(personOverview);
         }catch(IOException e){
@@ -123,7 +134,8 @@ public class JavaFxMain extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(JavaFxMain.class.getResource("view/Settings.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
-
+            rootLayoutController.setPathLabel("Settings");
+            
             rootLayout.setCenter(personOverview);
         }
         catch(IOException e){
