@@ -44,7 +44,7 @@ public class JavaFxMain extends Application {
         if(applicationProperties==null || !applicationProperties.containsKey("env.first_run") || applicationProperties.getProperty("env.first_run")=="true"){
             showSettings();
             try {
-                //applicationProperties.setProperty("env.first_run", "false");
+                applicationProperties.setProperty("env.first_run", "false");
                 applicationProperties.store(new FileOutputStream("resources/app.properties"), null);
             }
             catch (IOException e){
@@ -135,7 +135,7 @@ public class JavaFxMain extends Application {
             loader.setLocation(JavaFxMain.class.getResource("view/Settings.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
             rootLayoutController.setPathLabel("Settings");
-            
+
             rootLayout.setCenter(personOverview);
         }
         catch(IOException e){
