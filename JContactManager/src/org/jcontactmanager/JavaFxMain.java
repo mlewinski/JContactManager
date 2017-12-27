@@ -14,10 +14,7 @@ import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactInformation;
 import org.jcontactmanager.model.ContactRepository;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class JavaFxMain extends Application {
@@ -41,9 +38,22 @@ public class JavaFxMain extends Application {
 
 
         initRootLayout();
-
-        showPersonOverview();
-
+        if(applicationProperties==null || !applicationProperties.containsKey("env.first_run") || applicationProperties.getProperty("env.first_run")=="true"){
+            showSettings();
+            try {
+                applicationProperties.setProperty("env.first_run", "true");
+                applicationProperties.store(new FileOutputStream("resources/app.properties"), null);
+            }
+            catch (IOException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Warning - properties");
+                alert.setContentText("Application has encountered a problem while trying to save resources/app.properties file. Application will run using the default config.");
+                alert.showAndWait();
+            }
+        }
+        else {
+            showPersonOverview();
+        }
     }
 
     public JavaFxMain(){
@@ -83,7 +93,7 @@ public class JavaFxMain extends Application {
             }
 
             this.primaryStage.getIcons().add(new Image("file:resources/icons/app_icon.png"));
-            
+
             //Show the scene containing root layout
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -104,6 +114,19 @@ public class JavaFxMain extends Application {
 
             rootLayout.setCenter(personOverview);
         }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showSettings(){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(JavaFxMain.class.getResource("view/Settings.fxml"));
+            AnchorPane personOverview = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(personOverview);
+        }
+        catch(IOException e){
             e.printStackTrace();
         }
     }
