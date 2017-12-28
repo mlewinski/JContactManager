@@ -48,11 +48,18 @@
       </VBox>
    </left>
    <top>
-      <HBox styleClass="hpane" BorderPane.alignment="CENTER">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="hpane">
          <children>
             <Label id="uname-label" fx:id="usernameLabel" alignment="CENTER" prefHeight="40.0" prefWidth="297.0" />
-            <Label id="path-label" fx:id="pathLabel" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="388.0" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="262.0" styleClass="title" text="Contact Manager" />
+            <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label id="path-label" fx:id="pathLabel" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="388.0" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="262.0" styleClass="title" text="Contact Manager" />
+               </children>
+               <HBox.margin>
+                  <Insets right="1.0" />
+               </HBox.margin>
+            </HBox>
          </children>
       </HBox>
    </top>

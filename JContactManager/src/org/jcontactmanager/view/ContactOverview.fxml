@@ -6,11 +6,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="745.0" stylesheets="@styles/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.ContactOverviewController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="745.0" stylesheets="@styles/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.ContactOverviewController">
    <children>
-      <ScrollPane layoutX="20.0" layoutY="75.0" prefHeight="251.0" prefWidth="672.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="51.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="382.0" prefWidth="725.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="51.0">
          <content>
-            <TableView fx:id="contactTable" prefHeight="247.0" prefWidth="703.0">
+            <TableView fx:id="contactTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="339.0" prefWidth="723.0">
               <columns>
                 <TableColumn fx:id="idColumn" minWidth="20.0" prefWidth="75.0" resizable="false" text="#" />
                   <TableColumn fx:id="nicknameColumn" minWidth="50.0" prefWidth="100.0" resizable="false" text="Nickname" />
@@ -23,8 +23,8 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="addNewButton" layoutX="442.0" layoutY="385.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Add new" />
-      <Button fx:id="searchButton" layoutX="20.0" layoutY="26.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Search" />
-      <Button layoutX="564.0" layoutY="385.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Edit" />
+      <Button fx:id="addNewButton" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Add new" />
+      <Button fx:id="searchButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Search" />
+      <Button layoutX="256.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="115.0" text="Edit" />
    </children>
 </AnchorPane>
