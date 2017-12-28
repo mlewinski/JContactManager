@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactInformation;
 import org.jcontactmanager.model.ContactRepository;
+import org.jcontactmanager.view.ContactOverviewController;
 import org.jcontactmanager.view.RootLayoutController;
 
 import java.io.*;
@@ -121,6 +122,8 @@ public class JavaFxMain extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(JavaFxMain.class.getResource("view/ContactOverview.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
+            ContactOverviewController overviewController = loader.getController();
+            overviewController.setJavaFxMain(this);
             rootLayoutController.setPathLabel("Contacts");
 
             rootLayout.setCenter(personOverview);
