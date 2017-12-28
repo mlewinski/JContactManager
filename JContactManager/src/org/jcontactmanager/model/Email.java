@@ -1,6 +1,8 @@
 package org.jcontactmanager.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.jcontactmanager.util.SqlTools;
 
@@ -13,8 +15,8 @@ import org.jcontactmanager.util.SqlTools;
     TODO : zmienić nazwy tabel i kolumn
  */
 public class Email extends Communicator{
-    private IntegerProperty id;
-    private StringProperty emailAddress;
+    private IntegerProperty id = new SimpleIntegerProperty();
+    private StringProperty emailAddress = new SimpleStringProperty();
 
     @Override
     public int getId() {

@@ -1,15 +1,17 @@
 package org.jcontactmanager.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
  * Created by mlewinski on 11/10/17.
  */
 public class GenericCommunicator extends Communicator{
-    private IntegerProperty id;
-    private StringProperty address;
-    private StringProperty protocol;
+    private IntegerProperty id = new SimpleIntegerProperty();
+    private StringProperty address = new SimpleStringProperty();
+    private StringProperty protocol = new SimpleStringProperty();
 
     @Override
     public int getId() {

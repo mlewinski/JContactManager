@@ -1,17 +1,19 @@
 package org.jcontactmanager.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
  * Created by mlewinski on 11/10/17.
  */
 public abstract class Communicator implements IStoreable {
-    protected IntegerProperty id;
-    protected IntegerProperty ownerID;
-    protected StringProperty label;
-    protected StringProperty note;
-    protected StringProperty category;
+    protected IntegerProperty id = new SimpleIntegerProperty();
+    protected IntegerProperty ownerID = new SimpleIntegerProperty();
+    protected StringProperty label = new SimpleStringProperty();
+    protected StringProperty note = new SimpleStringProperty();
+    protected StringProperty category = new SimpleStringProperty();
 
     public int getId() {
         return id.get();

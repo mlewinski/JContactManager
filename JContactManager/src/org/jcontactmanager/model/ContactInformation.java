@@ -10,15 +10,15 @@ import javafx.beans.property.StringProperty;
  */
 
 public class ContactInformation implements IStoreable {
-    private IntegerProperty id;
-    private StringProperty name;
-    private StringProperty nickname;
-    private StringProperty gender;
-    private StringProperty address;
-    private StringProperty city;
-    private StringProperty country;
-    private StringProperty note;
-    private StringProperty website;
+    private IntegerProperty id = new SimpleIntegerProperty();
+    private StringProperty name = new SimpleStringProperty();
+    private StringProperty nickname = new SimpleStringProperty();
+    private StringProperty gender = new SimpleStringProperty();
+    private StringProperty address = new SimpleStringProperty();
+    private StringProperty city = new SimpleStringProperty();
+    private StringProperty country = new SimpleStringProperty();
+    private StringProperty note = new SimpleStringProperty();
+    private StringProperty website = new SimpleStringProperty();
 
     public ContactInformation() {
         this(0,null,null,null,null,null,null,null,null);

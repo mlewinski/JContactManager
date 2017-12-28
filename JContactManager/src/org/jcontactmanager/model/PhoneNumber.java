@@ -1,15 +1,17 @@
 package org.jcontactmanager.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
  * Created by mlewinski on 11/10/17.
  */
 public class PhoneNumber extends Communicator{
-    private IntegerProperty id;
-    private StringProperty number;
-    private StringProperty Network;
+    private IntegerProperty id = new SimpleIntegerProperty();
+    private StringProperty number = new SimpleStringProperty();
+    private StringProperty network = new SimpleStringProperty();
 
     @Override
     public int getId() {
@@ -37,15 +39,15 @@ public class PhoneNumber extends Communicator{
     }
 
     public String getNetwork() {
-        return Network.get();
+        return network.get();
     }
 
     public StringProperty getNetworkProperty() {
-        return Network;
+        return network;
     }
 
     public void setNetwork(String network) {
-        Network.set(network);
+        this.network.set(network);
     }
 
     @Override
