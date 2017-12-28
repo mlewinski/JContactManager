@@ -56,13 +56,14 @@ public class ContactRepository {
 
     private void fetchAllContacts() throws SQLException, IOException{
         try(Connection conn = getConnection(); Statement stm = conn.createStatement()){
-            try(ResultSet contacts = stm.executeQuery("SELECT * FROM Contacts")){
+            try(ResultSet contacts = stm.executeQuery("SELECT * FROM `Contacts` ")){
+                if(contacts == null) return;
                 while(contacts.next()){
                     Contact newContact = new Contact();
                     int contactID = contacts.getInt("ID");
                     newContact.setId(contactID);
                     List<Email> emailList = new ArrayList<Email>();
-                    try(ResultSet emails = stm.executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID="+contactID)){
+                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID="+contactID)){
                         while(emails.next()){
                             Email email = new Email();
                             email.setId(emails.getInt("ID"));
@@ -74,7 +75,7 @@ public class ContactRepository {
                         }
                     }
                     List<PhoneNumber> phoneNumberList = new ArrayList<PhoneNumber>();
-                    try(ResultSet phoneNumbers = stm.executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID="+contactID)){
+                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID="+contactID)){
                         while(phoneNumbers.next()){
                             PhoneNumber phoneNumber = new PhoneNumber();
                             phoneNumber.setId(phoneNumbers.getInt("ID"));
@@ -87,7 +88,7 @@ public class ContactRepository {
                         }
                     }
                     List<GenericCommunicator> genericCommunicatorList = new ArrayList<GenericCommunicator>();
-                    try(ResultSet genericCommunicators = stm.executeQuery("SELECT * FROM `Communicators` INNER JOIND `GenericComms` ON Communicators.ID=GenericComms.ID WHERE Communicators.OwnerID="+contactID)){
+                    try(ResultSet genericCommunicators = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `GenericComms` ON Communicators.ID=GenericComms.ID WHERE Communicators.OwnerID="+contactID)){
                         while(genericCommunicators.next()){
                             GenericCommunicator genericCommunicator = new GenericCommunicator();
                             genericCommunicator.setId(genericCommunicators.getInt("ID"));
@@ -100,7 +101,7 @@ public class ContactRepository {
                         }
                     }
                     ContactInformation contactInformation = new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"); //TEST DATA!!!!
-                    try(ResultSet contactInfo = stm.executeQuery("SELECT * FROM `ContactInformations` WHERE OwnerID="+contactID)){
+                    try(ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactInformations` WHERE OwnerID="+contactID)){
                         while(contactInfo.next()){
                             contactInformation.setId(contactInfo.getInt("ID"));
                             contactInformation.setName(contactInfo.getString("Name"));
