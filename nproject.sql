@@ -3,13 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Gru 2017, 21:17
+-- Czas generowania: 28 Gru 2017, 12:41
 -- Wersja serwera: 10.1.26-MariaDB-1
 -- Wersja PHP: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -21,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `nproject`
 --
-CREATE DATABASE IF NOT EXISTS `nproject` DEFAULT CHARACTER SET utf16 COLLATE utf16_unicode_ci;
-USE `nproject`;
 
 -- --------------------------------------------------------
 
@@ -30,30 +26,22 @@ USE `nproject`;
 -- Struktura tabeli dla tabeli `Communicators`
 --
 
-DROP TABLE IF EXISTS `Communicators`;
-CREATE TABLE IF NOT EXISTS `Communicators` (
+CREATE TABLE `Communicators` (
   `ID` int(11) NOT NULL,
   `OwnerID` int(11) NOT NULL,
   `Label` text COLLATE utf16_unicode_ci NOT NULL,
   `Note` text COLLATE utf16_unicode_ci NOT NULL,
-  `Category` text COLLATE utf16_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`)
+  `Category` text COLLATE utf16_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
---
--- Tabela Truncate przed wstawieniem `Communicators`
---
-
-TRUNCATE TABLE `Communicators`;
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `ContactInformations`
 --
 
-DROP TABLE IF EXISTS `ContactInformations`;
-CREATE TABLE IF NOT EXISTS `ContactInformations` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ContactInformations` (
+  `ID` int(11) NOT NULL,
   `OwnerID` int(11) NOT NULL,
   `Name` text COLLATE utf16_unicode_ci NOT NULL,
   `Address` text COLLATE utf16_unicode_ci NOT NULL,
@@ -62,15 +50,9 @@ CREATE TABLE IF NOT EXISTS `ContactInformations` (
   `Note` text COLLATE utf16_unicode_ci NOT NULL,
   `Website` text COLLATE utf16_unicode_ci NOT NULL,
   `Nickname` text COLLATE utf16_unicode_ci NOT NULL,
-  `Gender` text COLLATE utf16_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+  `Gender` text COLLATE utf16_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
---
--- Tabela Truncate przed wstawieniem `ContactInformations`
---
-
-TRUNCATE TABLE `ContactInformations`;
 --
 -- Zrzut danych tabeli `ContactInformations`
 --
@@ -84,18 +66,11 @@ INSERT INTO `ContactInformations` (`ID`, `OwnerID`, `Name`, `Address`, `City`, `
 -- Struktura tabeli dla tabeli `Contacts`
 --
 
-DROP TABLE IF EXISTS `Contacts`;
-CREATE TABLE IF NOT EXISTS `Contacts` (
+CREATE TABLE `Contacts` (
   `ID` int(11) NOT NULL,
-  `OwnerID` int(11) NOT NULL COMMENT 'For future use',
-  PRIMARY KEY (`ID`)
+  `OwnerID` int(11) NOT NULL COMMENT 'For future use'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
---
--- Tabela Truncate przed wstawieniem `Contacts`
---
-
-TRUNCATE TABLE `Contacts`;
 --
 -- Zrzut danych tabeli `Contacts`
 --
@@ -109,57 +84,99 @@ INSERT INTO `Contacts` (`ID`, `OwnerID`) VALUES
 -- Struktura tabeli dla tabeli `Emails`
 --
 
-DROP TABLE IF EXISTS `Emails`;
-CREATE TABLE IF NOT EXISTS `Emails` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `EmailAddress` text COLLATE utf16_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`)
+CREATE TABLE `Emails` (
+  `ID` int(11) NOT NULL,
+  `EmailAddress` text COLLATE utf16_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
---
--- Tabela Truncate przed wstawieniem `Emails`
---
-
-TRUNCATE TABLE `Emails`;
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `GenericComms`
 --
 
-DROP TABLE IF EXISTS `GenericComms`;
-CREATE TABLE IF NOT EXISTS `GenericComms` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `GenericComms` (
+  `ID` int(11) NOT NULL,
   `Address` text COLLATE utf16_unicode_ci NOT NULL,
-  `Protocol` text COLLATE utf16_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`)
+  `Protocol` text COLLATE utf16_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
---
--- Tabela Truncate przed wstawieniem `GenericComms`
---
-
-TRUNCATE TABLE `GenericComms`;
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `PhoneNumbers`
 --
 
-DROP TABLE IF EXISTS `PhoneNumbers`;
-CREATE TABLE IF NOT EXISTS `PhoneNumbers` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `PhoneNumbers` (
+  `ID` int(11) NOT NULL,
   `Number` text COLLATE utf16_unicode_ci NOT NULL,
-  `Network` text COLLATE utf16_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`)
+  `Network` text COLLATE utf16_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
 --
--- Tabela Truncate przed wstawieniem `PhoneNumbers`
+-- Indeksy dla zrzutów tabel
 --
 
-TRUNCATE TABLE `PhoneNumbers`;COMMIT;
+--
+-- Indexes for table `Communicators`
+--
+ALTER TABLE `Communicators`
+  ADD PRIMARY KEY (`ID`);
 
+--
+-- Indexes for table `ContactInformations`
+--
+ALTER TABLE `ContactInformations`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `Contacts`
+--
+ALTER TABLE `Contacts`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `Emails`
+--
+ALTER TABLE `Emails`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `GenericComms`
+--
+ALTER TABLE `GenericComms`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `PhoneNumbers`
+--
+ALTER TABLE `PhoneNumbers`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT dla tabeli `ContactInformations`
+--
+ALTER TABLE `ContactInformations`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT dla tabeli `Emails`
+--
+ALTER TABLE `Emails`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT dla tabeli `GenericComms`
+--
+ALTER TABLE `GenericComms`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT dla tabeli `PhoneNumbers`
+--
+ALTER TABLE `PhoneNumbers`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
