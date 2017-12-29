@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.SettingsController">
    <children>
       <GridPane layoutX="218.0" layoutY="94.0" prefHeight="444.0" prefWidth="745.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <columnConstraints>
@@ -35,11 +34,11 @@
             <Label style="-fx-text-fill: #353535;" styleClass="input-label" text="Database username" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Label style="-fx-text-fill: #353535;" styleClass="input-label" text="Database password" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="150.0" text="Save" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-            <PasswordField GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField alignment="CENTER" prefHeight="25.0" prefWidth="194.0" GridPane.columnIndex="2" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <PasswordField alignment="CENTER" promptText="Password to the database" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField alignment="CENTER" prefHeight="25.0" prefWidth="194.0" promptText="Your display name" GridPane.columnIndex="2" />
+            <TextField alignment="CENTER" promptText="Path to the background image" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField alignment="CENTER" promptText="Database URL in JDBC connection string format" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField alignment="CENTER" promptText="Database server username" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <ImageView id="bgicon" fitHeight="32.0" fitWidth="32.0" styleClass="settings" GridPane.rowIndex="1">
                <image>
                   <Image url="@styles/icons/background_image.png" />
