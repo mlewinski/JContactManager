@@ -124,6 +124,9 @@ public class ContactRepository {
         }
     }
 
+    private static Connection getConnection() throws SQLException, IOException{
+        Properties props = new Properties();
+
         try(InputStream in = Files.newInputStream(Paths.get(".","resources", "database.properties").normalize())){
             props.load(in);
         }
