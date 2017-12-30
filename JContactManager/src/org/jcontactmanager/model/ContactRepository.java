@@ -100,7 +100,7 @@ public class ContactRepository {
                             genericCommunicatorList.add(genericCommunicator);
                         }
                     }
-                    ContactInformation contactInformation = new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"); //TEST DATA!!!!
+                    ContactInformation contactInformation = new ContactInformation();
                     try(ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactInformations` WHERE OwnerID="+contactID)){
                         while(contactInfo.next()){
                             contactInformation.setId(contactInfo.getInt("ID"));
@@ -124,8 +124,6 @@ public class ContactRepository {
         }
     }
 
-    private static Connection getConnection() throws SQLException, IOException{
-        Properties props = new Properties();
         try(InputStream in = Files.newInputStream(Paths.get(".","resources", "database.properties").normalize())){
             props.load(in);
         }
