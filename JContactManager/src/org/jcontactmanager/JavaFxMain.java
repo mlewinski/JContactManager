@@ -15,8 +15,10 @@ import org.jcontactmanager.model.ContactInformation;
 import org.jcontactmanager.model.ContactRepository;
 import org.jcontactmanager.view.ContactOverviewController;
 import org.jcontactmanager.view.RootLayoutController;
+import org.jcontactmanager.view.SettingsController;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class JavaFxMain extends Application {
@@ -26,6 +28,7 @@ public class JavaFxMain extends Application {
     }
 
     public Properties applicationProperties;
+    private Properties databaseProperties;
 
     private Stage primaryStage;
     private BorderPane rootLayout;
@@ -65,6 +68,17 @@ public class JavaFxMain extends Application {
         repository = new ContactRepository();
         contactInformationData = repository.getRepositoryReference();
         try {
+            databaseProperties = new Properties();
+            databaseProperties.load(new FileInputStream(Paths.get(".", "resources", "database.properties").normalize().toFile()));
+        }
+        catch(IOException ex){
+            applicationProperties = null;
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Warning - properties");
+            alert.setContentText("Application has encountered a problem while trying to access resources/database.properties file. Application will run using the zero-config.");
+            alert.showAndWait();
+        }
+        try {
             applicationProperties = new Properties();
             applicationProperties.load(new FileInputStream("resources/app.properties"));
         }
@@ -94,8 +108,8 @@ public class JavaFxMain extends Application {
                 rootLayoutController.setUsername(applicationProperties.getProperty("env.username"));
             }
 
-            if(applicationProperties.containsKey("view.background")) {
-                File f = new File("resources/" + applicationProperties.getProperty("view.background"));
+            if(applicationProperties.containsKey("view.background") && !applicationProperties.getProperty("view.background").isEmpty()) {
+                File f = new File(applicationProperties.getProperty("view.background"));
                 if (f.exists()) {
                     BackgroundImage backgroundImage = new BackgroundImage(new Image(applicationProperties.getProperty("view.background"), primaryStage.getWidth(), primaryStage.getHeight(), false, true),
                             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -113,7 +127,10 @@ public class JavaFxMain extends Application {
             primaryStage.show();
         }catch (IOException e)
         {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Error");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -137,6 +154,9 @@ public class JavaFxMain extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(JavaFxMain.class.getResource("view/Settings.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
+            SettingsController stcl = loader.getController();
+            stcl.setGlobalApplicationProperties(applicationProperties);
+            stcl.setGlobalDatabaseProperties(databaseProperties);
             rootLayoutController.setPathLabel("Settings");
 
             rootLayout.setCenter(personOverview);
