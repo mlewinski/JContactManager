@@ -3,7 +3,6 @@ package org.jcontactmanager;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -11,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.jcontactmanager.model.Contact;
-import org.jcontactmanager.model.ContactInformation;
 import org.jcontactmanager.model.ContactRepository;
 import org.jcontactmanager.view.ContactOverviewController;
 import org.jcontactmanager.view.RootLayoutController;
@@ -45,11 +43,11 @@ public class JavaFxMain extends Application {
 
 
         initRootLayout();
-        if(applicationProperties==null || !applicationProperties.containsKey("env.first_run") || applicationProperties.getProperty("env.first_run")=="true"){
+        if(applicationProperties!=null && (!applicationProperties.containsKey("env.first_run") || applicationProperties.getProperty("env.first_run")=="true")){
             showSettings();
             try {
                 applicationProperties.setProperty("env.first_run", "false");
-                applicationProperties.store(new FileOutputStream("resources/app.properties"), null);
+                applicationProperties.store(new FileOutputStream(Paths.get(".", "/", "app.properties").normalize().toFile()), null);
             }
             catch (IOException e){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -69,7 +67,7 @@ public class JavaFxMain extends Application {
         contactInformationData = repository.getRepositoryReference();
         try {
             databaseProperties = new Properties();
-            databaseProperties.load(new FileInputStream(Paths.get(".", "resources", "database.properties").normalize().toFile()));
+            databaseProperties.load(new FileInputStream(Paths.get(".", "/", "database.properties").normalize().toFile()));
         }
         catch(IOException ex){
             applicationProperties = null;
@@ -80,7 +78,7 @@ public class JavaFxMain extends Application {
         }
         try {
             applicationProperties = new Properties();
-            applicationProperties.load(new FileInputStream("resources/app.properties"));
+            applicationProperties.load(new FileInputStream(Paths.get(".", "/", "app.properties").normalize().toFile()));
         }
         catch(IOException ex){
             applicationProperties = null;
@@ -108,7 +106,7 @@ public class JavaFxMain extends Application {
                 rootLayoutController.setUsername(applicationProperties.getProperty("env.username"));
             }
 
-            if(applicationProperties.containsKey("view.background") && !applicationProperties.getProperty("view.background").isEmpty()) {
+            if(applicationProperties!=null && applicationProperties.containsKey("view.background") && !applicationProperties.getProperty("view.background").isEmpty()) {
                 File f = new File(applicationProperties.getProperty("view.background"));
                 if (f.exists()) {
                     BackgroundImage backgroundImage = new BackgroundImage(new Image(applicationProperties.getProperty("view.background"), primaryStage.getWidth(), primaryStage.getHeight(), false, true),
@@ -117,7 +115,7 @@ public class JavaFxMain extends Application {
                 }
             }
 
-            this.primaryStage.getIcons().add(new Image("file:resources/icons/app_icon.png"));
+            this.primaryStage.getIcons().add(new Image(Paths.get(".", "/", "icons/app_icon.png").normalize().toFile().toURI().toString()));
 
             //Show the scene containing root layout
             Scene scene = new Scene(rootLayout);
