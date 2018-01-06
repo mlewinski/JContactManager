@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/JContactManager.iml" filepath="$PROJECT_DIR$/.idea/JContactManager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../itext7-7.0.2/kernel.iml" filepath="$PROJECT_DIR$/../itext7-7.0.2/kernel.iml" />
     </modules>
   </component>
 </project>
