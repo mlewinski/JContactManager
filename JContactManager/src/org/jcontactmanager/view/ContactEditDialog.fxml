@@ -42,16 +42,14 @@
             <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="websiteField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="privatePhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label text="Private Email address" GridPane.rowIndex="9" />
-            <Label text="Note" GridPane.rowIndex="11" />
-            <TextField fx:id="privateEmailAddress" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField fx:id="noteField" prefWidth="283.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <Label text="Home Phone Number" GridPane.rowIndex="7" />
-            <Label text="Business Phone Number" GridPane.rowIndex="8" />
-            <Label text="Business Email address" GridPane.rowIndex="10" />
-            <TextField fx:id="homePhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="businessPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="businessEmailAddress" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label text="Private Email address" GridPane.rowIndex="8" />
+            <Label text="Note" GridPane.rowIndex="10" />
+            <TextField fx:id="privateEmailAddress" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="noteField" prefWidth="283.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label text="Work Phone Number" GridPane.rowIndex="7" />
+            <Label text="Work Email address" GridPane.rowIndex="9" />
+            <TextField fx:id="workPhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="workEmailAddress" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label text="Gender" GridPane.rowIndex="3" />
             <TextField fx:id="genderField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
