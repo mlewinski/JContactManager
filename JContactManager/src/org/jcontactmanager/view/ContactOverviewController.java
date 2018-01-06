@@ -1,6 +1,7 @@
 package org.jcontactmanager.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.jcontactmanager.JavaFxMain;
@@ -43,6 +44,32 @@ public class ContactOverviewController {
         countryColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getCountryProperty());
         websiteColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getWebsiteProperty());
 
+    }
+
+
+    @FXML
+    private void handleNewContact()
+    {
+        Contact tempContact = new Contact();
+        boolean okClicked = javaFxMain.showContactEditingDialog(tempContact);
+        if(okClicked){
+            javaFxMain.getContactInformationData().add(tempContact);
+        }
+    }
+
+    @FXML
+    private void handleEditContact(){
+        Contact selectedContact = contactTable.getSelectionModel().getSelectedItem();
+        if(selectedContact != null){
+            boolean okClicked = javaFxMain.showContactEditingDialog(selectedContact);
+        }else
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(javaFxMain.getPrimaryStage());
+            alert.setTitle("No selection");
+            alert.setHeaderText("No contact selected");
+            alert.setContentText("Please select a contact in the table.");
+        }
     }
 
     public void setJavaFxMain(JavaFxMain javaFxMain) {
