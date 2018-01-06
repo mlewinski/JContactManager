@@ -4,7 +4,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.jcontactmanager.util.SqlTools;
+
+import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
 
 
 /**
@@ -31,33 +32,33 @@ public class Email extends Communicator{
         this.id.set(id);
     }
 
-    public String getEmailAddress() { return emailAddress.get(); }
+    public String getEmailAddress() {
+        return emailAddress.get();
+    }
 
-    public StringProperty getEmailAddressProperty() {
+    public StringProperty emailAddressProperty() {
         return emailAddress;
     }
 
     public void setEmailAddress(String emailAddress) {
-        this.emailAddress.set(SqlTools.sanitizeQuery(emailAddress));
+        this.emailAddress.set(emailAddress);
     }
 
     @Override
-    public String saveQuery() {
-        return null;
+    public String saveQuery(){
+        return sanitizeQuery("INSERT INTO Emails VALUES(" + this.id + "," + this.emailAddress+")");
     }
 
     @Override
     public String updateQuery() {
-        return null;
+        return sanitizeQuery("UPDATE Emails SET ID="+this.id+", EmailAddress="+this.emailAddress);
     }
 
     @Override
     public String deleteQuery() {
-        return null;
+        return sanitizeQuery("DELETE FROM Emails WHERE ID =" + this.id + " AND EmailAddress=" + this.emailAddress);
     }
 
     @Override
-    public String selectQuery() {
-        return null;
-    }
+    public String selectQuery(){return null;}
 }

@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
+
 /*
     For future use
  */
@@ -146,17 +148,23 @@ public class ContactInformation implements IStoreable {
 
     @Override
     public String saveQuery() {
-        return null;
+        return sanitizeQuery("INSERT INTO ContactsInformations VALUES(" + this.id + "," + this.name+ "," + this.nickname
+                + "," + this.gender + "," + this.address + "," + this.city + "," + this.country + "," + this.note
+                + "," + this.website+")");
     }
 
     @Override
     public String updateQuery() {
-        return null;
+        return sanitizeQuery("UPDATE ContactsInformations SET ID="+this.id+", Name="+this.name + ", Nickname=" + this.nickname
+                + ", Gender=" + this.gender + ", Address=" + this.address + ", City=" + this.city + ", Country=" + this.country
+                +   ", Note=" + this.note + ", Website" + this.website);
     }
 
     @Override
     public String deleteQuery() {
-        return null;
+        // TODO: Trzeba kasowac po id ponieważ jest ono wyswietlane w tabeli(kasowanie informacji jak i również update powinien zawierac ID )
+        return sanitizeQuery("DELETE FROM ContactsInformations WHERE ID="+this.id);
+
     }
 
     @Override

@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
+
 /**
  * Created by mlewinski on 11/10/17.
  */
@@ -30,7 +32,7 @@ public class PhoneNumber extends Communicator{
         return number.get();
     }
 
-    public StringProperty getNumberProperty() {
+    public StringProperty numberProperty() {
         return number;
     }
 
@@ -52,17 +54,17 @@ public class PhoneNumber extends Communicator{
 
     @Override
     public String saveQuery() {
-        return null;
+        return sanitizeQuery("INSERT INTO PhoneNumbers VALUES(" + this.id + "," + this.number + "," + this.network + ")");
     }
 
     @Override
     public String updateQuery() {
-        return null;
+        return sanitizeQuery("UPDATE PhoneNumbers SET Number="+this.number+ "," + "Network=" + this.network);
     }
 
     @Override
     public String deleteQuery() {
-        return null;
+        return sanitizeQuery("DELETE FROM PhoneNubmers WHERE Number=" + this.number + " AND Network=" + this.network);
     }
 
     @Override

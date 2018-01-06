@@ -13,7 +13,7 @@ public abstract class Communicator implements IStoreable {
     protected IntegerProperty ownerID = new SimpleIntegerProperty();
     protected StringProperty label = new SimpleStringProperty();
     protected StringProperty note = new SimpleStringProperty();
-    protected StringProperty category = new SimpleStringProperty();
+    protected StringProperty category = new SimpleStringProperty(); // For future use
 
     public int getId() {
         return id.get();

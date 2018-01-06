@@ -33,10 +33,9 @@ public class ContactOverviewController {
 
     };
 
-
     @FXML
     private void initialize(){
-        //idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty()); //parse to other
+       // idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty()); //parse to other
         nicknameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNicknameProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNameProperty());
         genderColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getGenderProperty());
@@ -46,8 +45,8 @@ public class ContactOverviewController {
 
     }
 
-    public void setJavaFxMain(JavaFxMain javaFxMain){
-        this.javaFxMain=javaFxMain;
+    public void setJavaFxMain(JavaFxMain javaFxMain) {
+        this.javaFxMain = javaFxMain;
 
         contactTable.setItems(javaFxMain.getContactInformationData());
     }

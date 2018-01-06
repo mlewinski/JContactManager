@@ -31,8 +31,9 @@ public class ContactRepository {
 
     }
 
-    public void save(){
-
+    public void save(String sql) throws SQLException, IOException{
+//        try(Connection conn = getConnection(); Statement stm = conn.createStatement()){
+//            try(ResultSet contacts = stm.executeQuery("SELECT * FROM `Contacts` ")) //mniej więcej tak
     }
 
     private void loadContacts(){
@@ -137,4 +138,5 @@ public class ContactRepository {
         String pass = props.getProperty("jdbc.password");
         return DriverManager.getConnection(url, uname, pass);
     }
+
 }
