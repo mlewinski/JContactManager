@@ -63,8 +63,7 @@ public class ContactRepository {
                     Contact newContact = new Contact();
                     int contactID = contacts.getInt("ID");
                     newContact.setId(contactID);
-                    List<Email> emailList = new ArrayList<Email>();
-                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID="+contactID)){
+                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Category=private AND Communicators.OwnerID="+contactID)){
                         while(emails.next()){
                             Email email = new Email();
                             email.setId(emails.getInt("ID"));
@@ -72,33 +71,42 @@ public class ContactRepository {
                             email.setNote(emails.getString("Note"));
                             email.setLabel(emails.getString("Label"));
                             email.setEmailAddress(emails.getString("EmailAddress"));
-                            emailList.add(email);
+                            newContact.setPrivateEmailAddresses(email);
                         }
                     }
-                    List<PhoneNumber> phoneNumberList = new ArrayList<PhoneNumber>();
-                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID="+contactID)){
+                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Category=work AND Communicators.OwnerID="+contactID)){
+                        while(emails.next()){
+                            Email email = new Email();
+                            email.setId(emails.getInt("ID"));
+                            email.setCategory(emails.getString("Category"));
+                            email.setNote(emails.getString("Note"));
+                            email.setLabel(emails.getString("Label"));
+                            email.setEmailAddress(emails.getString("EmailAddress"));
+                            newContact.setWorkEmailAddress(email);
+                        }
+                    }
+                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Category=private Communicators.OwnerID="+contactID)){
                         while(phoneNumbers.next()){
                             PhoneNumber phoneNumber = new PhoneNumber();
                             phoneNumber.setId(phoneNumbers.getInt("ID"));
                             phoneNumber.setCategory(phoneNumbers.getString("Category"));
                             phoneNumber.setNote(phoneNumbers.getString("Note"));
                             phoneNumber.setLabel(phoneNumbers.getString("Label"));
-                            phoneNumber.setNumber(phoneNumbers.getString("EmailAddress"));
+                            phoneNumber.setNumber(phoneNumbers.getString("Number"));
                             phoneNumber.setNetwork((phoneNumbers.getString("Network")));
-                            phoneNumberList.add(phoneNumber);
+                            newContact.setPrivatePhoneNumber(phoneNumber);
                         }
                     }
-                    List<GenericCommunicator> genericCommunicatorList = new ArrayList<GenericCommunicator>();
-                    try(ResultSet genericCommunicators = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `GenericComms` ON Communicators.ID=GenericComms.ID WHERE Communicators.OwnerID="+contactID)){
-                        while(genericCommunicators.next()){
-                            GenericCommunicator genericCommunicator = new GenericCommunicator();
-                            genericCommunicator.setId(genericCommunicators.getInt("ID"));
-                            genericCommunicator.setCategory(genericCommunicators.getString("Category"));
-                            genericCommunicator.setNote(genericCommunicators.getString("Note"));
-                            genericCommunicator.setLabel(genericCommunicators.getString("Label"));
-                            genericCommunicator.setProtocol(genericCommunicators.getString("Protocol"));
-                            genericCommunicator.setAddress(genericCommunicators.getString("Address"));
-                            genericCommunicatorList.add(genericCommunicator);
+                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Category=work Communicators.OwnerID="+contactID)){
+                        while(phoneNumbers.next()){
+                            PhoneNumber phoneNumber = new PhoneNumber();
+                            phoneNumber.setId(phoneNumbers.getInt("ID"));
+                            phoneNumber.setCategory(phoneNumbers.getString("Category"));
+                            phoneNumber.setNote(phoneNumbers.getString("Note"));
+                            phoneNumber.setLabel(phoneNumbers.getString("Label"));
+                            phoneNumber.setNumber(phoneNumbers.getString("Number"));
+                            phoneNumber.setNetwork((phoneNumbers.getString("Network")));
+                            newContact.setWorkPhoneNumber(phoneNumber);
                         }
                     }
                     ContactInformation contactInformation = new ContactInformation();
@@ -116,9 +124,6 @@ public class ContactRepository {
                         }
                     }
                     newContact.setContactInformation(contactInformation);
-                    newContact.setEmailAddresses(emailList);
-                    newContact.setPhoneNumbers(phoneNumberList);
-                    newContact.setOtherCommunicators(genericCommunicatorList);
                     _repository.add(newContact);
                 }
             }
