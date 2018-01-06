@@ -13,8 +13,10 @@ import java.util.List;
  */
 public class Contact implements IStoreable {
     private IntegerProperty id = new SimpleIntegerProperty();
-    private ObjectProperty<List<Email>> emailAddresses = new SimpleObjectProperty<>();
-    private ObjectProperty<List<PhoneNumber>> phoneNumbers = new SimpleObjectProperty<>();
+    private ObjectProperty<Email> privateEmailAddress = new SimpleObjectProperty<>();
+    private ObjectProperty<Email> workEmailAddress = new SimpleObjectProperty<>();
+    private ObjectProperty<PhoneNumber> privatePhoneNumber = new SimpleObjectProperty<>();
+    private ObjectProperty<PhoneNumber> workPhoneNumber = new SimpleObjectProperty<>();
     private ObjectProperty<List<GenericCommunicator>> otherCommunicators = new SimpleObjectProperty<>();
     private ObjectProperty<ContactInformation> contactInformation = new SimpleObjectProperty<>();
 
@@ -30,28 +32,51 @@ public class Contact implements IStoreable {
         this.id.set(id);
     }
 
-    public List<Email> getEmailAddresses() {
-        return emailAddresses.get();
+    public Email getPrivateEmailAddress() {
+        return privateEmailAddress.get();
     }
 
-    public ObjectProperty<List<Email>> getEmailAddressesProperty() {
-        return emailAddresses;
+    public ObjectProperty<Email> getPrivateEmailAddressesProperty() {
+        return privateEmailAddress;
     }
 
-    public void setEmailAddresses(List<Email> emailAddresses) {
-        this.emailAddresses.set(emailAddresses);
+    public void setPrivateEmailAddresses(Email emailAddress) {
+        this.privateEmailAddress.set(emailAddress);
+    }
+    public Email getWorkEmailAddress() {
+        return workEmailAddress.get();
     }
 
-    public List<PhoneNumber> getPhoneNumbers() {
-        return phoneNumbers.get();
+    public ObjectProperty<Email> getWorkEmailAddressesProperty() {
+        return workEmailAddress;
     }
 
-    public ObjectProperty<List<PhoneNumber>> getPhoneNumbersProperty() {
-        return phoneNumbers;
+    public void setWorkEmailAddresses(Email emailAddress) {
+        this.workEmailAddress.set(emailAddress);
     }
 
-    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        this.phoneNumbers.set(phoneNumbers);
+    public PhoneNumber getPrivatePhoneNumbers() {
+        return privatePhoneNumber.get();
+    }
+
+    public ObjectProperty<PhoneNumber> getPrivatePhoneNumberProperty() {
+        return privatePhoneNumber;
+    }
+
+    public void setPrivatePhoneNumbers(PhoneNumber phoneNumber) {
+        this.privatePhoneNumber.set(phoneNumber);
+    }
+
+    public PhoneNumber getWorkPhoneNumbers() {
+        return workPhoneNumber.get();
+    }
+
+    public ObjectProperty<PhoneNumber> getWorkPhoneNumberProperty() {
+        return workPhoneNumber;
+    }
+
+    public void setWorkPhoneNumbers(PhoneNumber phoneNumber) {
+        this.workPhoneNumber.set(phoneNumber);
     }
 
     public List<GenericCommunicator> getOtherCommunicators() {
