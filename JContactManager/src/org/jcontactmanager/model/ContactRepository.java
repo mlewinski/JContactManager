@@ -102,7 +102,7 @@ public class ContactRepository {
                         }
                     }
                     ContactInformation contactInformation = new ContactInformation();
-                    try(ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactInformations` WHERE OwnerID="+contactID)){
+                    try(ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactInformations` WHERE ID="+contactID)){
                         while(contactInfo.next()){
                             contactInformation.setId(contactInfo.getInt("ID"));
                             contactInformation.setName(contactInfo.getString("Name"));
