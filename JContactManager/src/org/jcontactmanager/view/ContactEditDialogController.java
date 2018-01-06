@@ -6,6 +6,9 @@ import org.jcontactmanager.model.*;
 
 import javax.swing.text.html.ListView;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class ContactEditDialogController {
     @FXML
@@ -23,17 +26,17 @@ public class ContactEditDialogController {
     @FXML
     private TextField websiteField;
     @FXML
-    private TextField homePhoneNumberField;
-    @FXML
-    private TextField businessPhoneNumberField;
+    private TextField workPhoneNumberField;
     @FXML
     private TextField privatePhoneNumberField;
     @FXML
-    private TextField networkField;
+    private TextField privateNetworkField;
+    @FXML
+    private TextField workNetworkField;
     @FXML
     private TextField privateEmailAddressField;
     @FXML
-    private TextField businessEmailAddressField;
+    private TextField workEmailAddressField;
     @FXML
     private TextField noteField;
 
@@ -53,37 +56,50 @@ public class ContactEditDialogController {
 
 
     public void setContact(Contact contact) {
+
         this.contact = contact;
-
-        nameField.setText(contact.getContactInformation().getName());
-        nicknameField.setText(contact.getContactInformation().getNickname());
-        addressField.setText(contact.getContactInformation().getAddress());
-        cityField.setText(contact.getContactInformation().getCity());
-        websiteField.setText(contact.getContactInformation().getWebsite());
-        privatePhoneNumberField.setText(contact.getPhoneNumbers().toString());
-        noteField.setText(contact.getContactInformation().getNote());
-
+        if(this.contact != null){
+            nameField.setText(contact.getContactInformation().getName());
+            nicknameField.setText(contact.getContactInformation().getNickname());
+            genderField.setText(contact.getContactInformation().getGender());
+            addressField.setText(contact.getContactInformation().getAddress());
+            countryField.setText(contact.getContactInformation().getCountry());
+            privateEmailAddressField.setText(contact.getEmailAddress().getPrivateEmailAddress());
+            workEmailAddressField.setText(contact.getEmailAddress().getWorkEmailAddress());
+            cityField.setText(contact.getContactInformation().getCity());
+            websiteField.setText(contact.getContactInformation().getWebsite());
+            privatePhoneNumberField.setText(contact.getPhoneNumber().getPrivateNumber());
+            workPhoneNumberField.setText(contact.getPhoneNumber().getWorkNumber());
+            privateNetworkField.setText(contact.getPhoneNumber().getPrivateNetwork());
+            workNetworkField.setText(contact.getPhoneNumber().getWorkNetwork());
+            noteField.setText(contact.getContactInformation().getNote());
+        }
     }
 
     public boolean isOkClicekd() {
         return okClicekd;
     }
 
+    //dodawanie
     @FXML
     private void handleOK(){
-//        if(isInputValid()){ //TODO: uzupełnić przekazywane parametry
-//            contact.setContactInformation(new ContactInformation(1,nameField.getText(),nicknameField.getText(),genderField.getText(),addressField.getText(),
-//                    cityField.getText(), countryField.getText(),noteField.getText(),websiteField.getText()));
-//            contact.setEmailAddresses(new Email());
-//            contact.setPhoneNumbers(new PhoneNumber());
-//            contact.setId(); //ID
-//            contact.setOtherCommunicators(new Communicator());
-//
-//            okClicekd = true;
-//            dialogStage.close();
-//        }
+        if(this.contact == null){ //TODO: uzupełnić przekazywane parametry
+            Random random = new Random();
+            int contactID = random.nextInt();
+
+            Contact contact = new Contact();
+            contact.setContactInformation(new ContactInformation(contactID,nameField.getText(),nicknameField.getText(),genderField.getText(),addressField.getText(),
+                    cityField.getText(), countryField.getText(),noteField.getText(),websiteField.getText()));
+            contact.setEmailAddress(new Email(1,privateEmailAddressField.getText(),workEmailAddressField.getText(),noteField.getText()));
+            contact.setPhoneNumber(new PhoneNumber(1, workPhoneNumberField.getText(),privatePhoneNumberField.getText(),workNetworkField.getText(),privateNetworkField.getText()));
+
+            okClicekd = true;
+            dialogStage.close();
+        }
     }
 
     @FXML
-    private void handleCancel(){}
+    private void handleCancel(){
+        dialogStage.close();
+    }
 }
