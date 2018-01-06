@@ -17,7 +17,6 @@ public class Contact implements IStoreable {
     private ObjectProperty<Email> workEmailAddress = new SimpleObjectProperty<>();
     private ObjectProperty<PhoneNumber> privatePhoneNumber = new SimpleObjectProperty<>();
     private ObjectProperty<PhoneNumber> workPhoneNumber = new SimpleObjectProperty<>();
-    private ObjectProperty<List<GenericCommunicator>> otherCommunicators = new SimpleObjectProperty<>();
     private ObjectProperty<ContactInformation> contactInformation = new SimpleObjectProperty<>();
 
     public int getId() {
@@ -51,11 +50,11 @@ public class Contact implements IStoreable {
         return workEmailAddress;
     }
 
-    public void setWorkEmailAddresses(Email emailAddress) {
+    public void setWorkEmailAddress(Email emailAddress) {
         this.workEmailAddress.set(emailAddress);
     }
 
-    public PhoneNumber getPrivatePhoneNumbers() {
+    public PhoneNumber getPrivatePhoneNumber() {
         return privatePhoneNumber.get();
     }
 
@@ -63,11 +62,11 @@ public class Contact implements IStoreable {
         return privatePhoneNumber;
     }
 
-    public void setPrivatePhoneNumbers(PhoneNumber phoneNumber) {
+    public void setPrivatePhoneNumber(PhoneNumber phoneNumber) {
         this.privatePhoneNumber.set(phoneNumber);
     }
 
-    public PhoneNumber getWorkPhoneNumbers() {
+    public PhoneNumber getWorkPhoneNumber() {
         return workPhoneNumber.get();
     }
 
@@ -75,20 +74,8 @@ public class Contact implements IStoreable {
         return workPhoneNumber;
     }
 
-    public void setWorkPhoneNumbers(PhoneNumber phoneNumber) {
+    public void setWorkPhoneNumber(PhoneNumber phoneNumber) {
         this.workPhoneNumber.set(phoneNumber);
-    }
-
-    public List<GenericCommunicator> getOtherCommunicators() {
-        return otherCommunicators.get();
-    }
-
-    public ObjectProperty<List<GenericCommunicator>> getOtherCommunicatorsProperty() {
-        return otherCommunicators;
-    }
-
-    public void setOtherCommunicators(List<GenericCommunicator> otherCommunicators) {
-        this.otherCommunicators.set(otherCommunicators);
     }
 
     public ContactInformation getContactInformation() {
