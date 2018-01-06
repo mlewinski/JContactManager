@@ -1,5 +1,6 @@
 package org.jcontactmanager;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,9 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactRepository;
+import org.jcontactmanager.view.ContactEditDialogController;
 import org.jcontactmanager.view.ContactOverviewController;
 import org.jcontactmanager.view.RootLayoutController;
 import org.jcontactmanager.view.SettingsController;
@@ -57,7 +60,7 @@ public class JavaFxMain extends Application {
             }
         }
         else {
-            showPersonOverview();
+            showContactOverview();
         }
     }
 
@@ -132,7 +135,7 @@ public class JavaFxMain extends Application {
         }
     }
 
-    public void showPersonOverview(){
+    public void showContactOverview(){
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(JavaFxMain.class.getResource("view/ContactOverview.fxml"));
@@ -145,6 +148,36 @@ public class JavaFxMain extends Application {
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    public boolean showContactEditingDialog(Contact contact)
+    {
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(JavaFxMain.class.getResource("view/ContactEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            //DialogStage
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Contact");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Person into controller
+            ContactEditDialogController controller = loader.getController();
+            controller.setContact(contact);
+
+            //Show the dialog
+            dialogStage.showAndWait();
+
+            return controller.isOkClicekd();
+        }catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     public void showSettings(){
