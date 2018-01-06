@@ -13,7 +13,6 @@ public abstract class Communicator implements IStoreable {
     protected IntegerProperty ownerID = new SimpleIntegerProperty();
     protected StringProperty label = new SimpleStringProperty();
     protected StringProperty note = new SimpleStringProperty();
-    protected StringProperty category = new SimpleStringProperty(); // For future use
 
     public int getId() {
         return id.get();
@@ -27,17 +26,6 @@ public abstract class Communicator implements IStoreable {
         this.id.set(id);
     }
 
-    public String getCategory() {
-        return category.get();
-    }
-
-    public StringProperty getTypeProperty() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category.set(category);
-    }
 
     public String getLabel() {
         return label.get();
