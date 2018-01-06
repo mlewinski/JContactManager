@@ -12,8 +12,18 @@ import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
  */
 public class PhoneNumber extends Communicator{
     private IntegerProperty id = new SimpleIntegerProperty();
-    private StringProperty number = new SimpleStringProperty();
-    private StringProperty network = new SimpleStringProperty();
+    private StringProperty workNumber = new SimpleStringProperty();
+    private StringProperty privateNumber = new SimpleStringProperty();
+    private StringProperty workNetwork = new SimpleStringProperty();
+    private StringProperty privateNetwork = new SimpleStringProperty();
+
+    public PhoneNumber(int id, String workNumber, String privateNumber, String workNetwork, String privateNetwork) {
+        this.id = new SimpleIntegerProperty(id);
+        this.workNumber = new SimpleStringProperty(workNumber);
+        this.privateNumber = new SimpleStringProperty(privateNumber);
+        this.workNetwork = new SimpleStringProperty(workNetwork);
+        this.privateNetwork = new SimpleStringProperty(privateNetwork);
+    }
 
     @Override
     public int getId() {
@@ -28,43 +38,68 @@ public class PhoneNumber extends Communicator{
         this.id.set(id);
     }
 
-    public String getNumber() {
-        return number.get();
+    public String getWorkNumber() {
+        return workNumber.get();
     }
 
-    public StringProperty numberProperty() {
-        return number;
+    public StringProperty workNumberProperty() {
+        return workNumber;
     }
 
-    public void setNumber(String number) {
-        this.number.set(number);
+    public void setWorkNumber(String workNumber) {
+        this.workNumber.set(workNumber);
     }
 
-    public String getNetwork() {
-        return network.get();
+    public String getPrivateNumber() {
+        return privateNumber.get();
     }
 
-    public StringProperty getNetworkProperty() {
-        return network;
+    public StringProperty privateNumberProperty() {
+        return privateNumber;
     }
 
-    public void setNetwork(String network) {
-        this.network.set(network);
+    public void setPrivateNumber(String privateNumber) {
+        this.privateNumber.set(privateNumber);
+    }
+
+    public String getWorkNetwork() {
+        return workNetwork.get();
+    }
+
+    public StringProperty workNetworkProperty() {
+        return workNetwork;
+    }
+
+    public void setWorkNetwork(String workNetwork) {
+        this.workNetwork.set(workNetwork);
+    }
+
+    public String getPrivateNetwork() {
+        return privateNetwork.get();
+    }
+
+    public StringProperty privateNetworkProperty() {
+        return privateNetwork;
+    }
+
+    public void setPrivateNetwork(String privateNetwork) {
+        this.privateNetwork.set(privateNetwork);
     }
 
     @Override
     public String saveQuery() {
-        return sanitizeQuery("INSERT INTO PhoneNumbers VALUES(" + this.id + "," + this.number + "," + this.network + ")");
+        return sanitizeQuery("INSERT INTO PhoneNumbers VALUES(" + this.id + "," + this.privateNumber + "," + this.workNumber + "," + this.privateNetwork + "," + workNetwork + ")");
     }
 
     @Override
     public String updateQuery() {
-        return sanitizeQuery("UPDATE PhoneNumbers SET Number="+this.number+ "," + "Network=" + this.network);
+        return sanitizeQuery("UPDATE PhoneNumbers SET ID="+this.id+ ", PrivateNumber=" + this.privateNumber + ", WorkNumber=" + this.workNumber +
+                            ", PrivateNetwork="+this.privateNetwork + ", WorkNetwork="+ this.workNetwork);
     }
 
     @Override
     public String deleteQuery() {
-        return sanitizeQuery("DELETE FROM PhoneNubmers WHERE Number=" + this.number + " AND Network=" + this.network);
+        return sanitizeQuery("DELETE FROM PhoneNubmers WHERE ID=" + this.id);
     }
 
     @Override
