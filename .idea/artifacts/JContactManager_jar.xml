@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JContactManager:jar">
+    <output-path>$PROJECT_DIR$/JContactManager/out/artifacts/JContactManager_jar</output-path>
+    <root id="archive" name="JContactManager.jar">
+      <element id="module-output" name="JContactManager" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../mysql-connector.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

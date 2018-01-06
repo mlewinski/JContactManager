@@ -43,8 +43,8 @@ public class SettingsController {
             if(!textJdbcUsername.getText().isEmpty()) globalDatabaseProperties.setProperty("jdbc.username", textJdbcUsername.getText());
             if(!textJdbcPassword.getText().isEmpty()) globalDatabaseProperties.setProperty("jdbc.password", textJdbcPassword.getText());
 
-            globalApplicationProperties.store(new FileOutputStream(Paths.get(".", "/", "app.properties").normalize().toFile()), null);
-            globalDatabaseProperties.store(new FileOutputStream(Paths.get(".", "/", "database.properties").normalize().toFile()), null);
+            globalApplicationProperties.store(new FileOutputStream(Paths.get(".", "/", "JContactManager/app.properties").normalize().toFile()), null);
+            globalDatabaseProperties.store(new FileOutputStream(Paths.get(".", "/", "JContactManager/database.properties").normalize().toFile()), null);
         }
         catch (IOException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);

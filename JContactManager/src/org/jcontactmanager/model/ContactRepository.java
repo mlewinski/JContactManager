@@ -127,7 +127,7 @@ public class ContactRepository {
     private static Connection getConnection() throws SQLException, IOException{
         Properties props = new Properties();
 
-        try(InputStream in = Files.newInputStream(Paths.get(".", "/", "database.properties").normalize())){
+        try(InputStream in = Files.newInputStream(Paths.get(".", "/", "JContactManager/database.properties").normalize())){
             props.load(in);
         }
         String drivers = props.getProperty("jdbc.drivers");

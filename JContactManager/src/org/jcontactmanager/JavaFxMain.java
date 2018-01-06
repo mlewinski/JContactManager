@@ -47,7 +47,7 @@ public class JavaFxMain extends Application {
             showSettings();
             try {
                 applicationProperties.setProperty("env.first_run", "false");
-                applicationProperties.store(new FileOutputStream(Paths.get(".", "/", "app.properties").normalize().toFile()), null);
+                applicationProperties.store(new FileOutputStream(Paths.get(".", "/", "JContactManager/app.properties").normalize().toFile()), null);
             }
             catch (IOException e){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -67,7 +67,7 @@ public class JavaFxMain extends Application {
         contactInformationData = repository.getRepositoryReference();
         try {
             databaseProperties = new Properties();
-            databaseProperties.load(new FileInputStream(Paths.get(".", "/", "database.properties").normalize().toFile()));
+            databaseProperties.load(new FileInputStream(Paths.get(".", "/", "JContactManager/database.properties").normalize().toFile()));
         }
         catch(IOException ex){
             applicationProperties = null;
@@ -78,7 +78,7 @@ public class JavaFxMain extends Application {
         }
         try {
             applicationProperties = new Properties();
-            applicationProperties.load(new FileInputStream(Paths.get(".", "/", "app.properties").normalize().toFile()));
+            applicationProperties.load(new FileInputStream(Paths.get(".", "/", "JContactManager/app.properties").normalize().toFile()));
         }
         catch(IOException ex){
             applicationProperties = null;
