@@ -4,9 +4,11 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
@@ -60,7 +62,9 @@ public class JavaFxMain extends Application {
             }
         }
         else {
+
             showContactOverview();
+            showSettings();
         }
     }
 
@@ -135,6 +139,7 @@ public class JavaFxMain extends Application {
         }
     }
 
+
     public void showContactOverview(){
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -143,12 +148,25 @@ public class JavaFxMain extends Application {
             ContactOverviewController overviewController = loader.getController();
             overviewController.setJavaFxMain(this);
             rootLayoutController.setPathLabel("Contacts");
-
             rootLayout.setCenter(personOverview);
         }catch(IOException e){
             e.printStackTrace();
         }
     }
+
+//    public void showSettings(){
+//        try{
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(JavaFxMain.class.getResource("view/Settings.fxml"));
+//            AnchorPane settings = (AnchorPane) loader.load();
+//            SettingsController settingsController = loader.getController();
+//            rootLayoutController.setPathLabel("Settings");
+//
+//            rootLayout.setCenter(settings);
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
+//    }
 
     public boolean showContactEditingDialog(Contact contact)
     {

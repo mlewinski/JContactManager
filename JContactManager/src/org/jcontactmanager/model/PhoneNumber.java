@@ -17,6 +17,9 @@ public class PhoneNumber extends Communicator{
     private StringProperty workNetwork = new SimpleStringProperty();
     private StringProperty privateNetwork = new SimpleStringProperty();
 
+    public PhoneNumber() {
+    }
+
     public PhoneNumber(int id, String workNumber, String privateNumber, String workNetwork, String privateNetwork) {
         this.id = new SimpleIntegerProperty(id);
         this.workNumber = new SimpleStringProperty(workNumber);

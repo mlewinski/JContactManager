@@ -12,7 +12,7 @@
    <left>
       <VBox prefHeight="315.0" prefWidth="220.0" styleClass="vpane" BorderPane.alignment="CENTER">
          <children>
-            <Button id="button_home" accessibleText="Return to home page" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="80.0" prefWidth="278.0" text="Home" textAlignment="RIGHT">
+            <Button id="button_home" accessibleText="Return to home page" alignment="BASELINE_LEFT" mnemonicParsing="false"  prefHeight="80.0" prefWidth="278.0" text="Home" textAlignment="RIGHT">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -20,7 +20,7 @@
                   <Tooltip text="Return to the home page" />
                </tooltip>
             </Button>
-            <Button id="button_contacts" accessibleText="View and manage contacts" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="80.0" prefWidth="233.0" text="Contacts" textAlignment="RIGHT">
+            <Button id="button_contacts" accessibleText="View and manage contacts" alignment="BASELINE_LEFT" mnemonicParsing="false"  prefHeight="80.0" prefWidth="233.0" text="Contacts" textAlignment="RIGHT">
                <VBox.margin>
                   <Insets left="5.0" right="5.0" top="1.0" />
                </VBox.margin>

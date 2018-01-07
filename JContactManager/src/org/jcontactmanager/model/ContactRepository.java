@@ -63,50 +63,46 @@ public class ContactRepository {
                     Contact newContact = new Contact();
                     int contactID = contacts.getInt("ID");
                     newContact.setId(contactID);
-                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Category=private AND Communicators.OwnerID="+contactID)){
+                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID="+contactID)){
                         while(emails.next()){
                             Email email = new Email();
                             email.setId(emails.getInt("ID"));
-                            email.setCategory(emails.getString("Category"));
                             email.setNote(emails.getString("Note"));
                             email.setLabel(emails.getString("Label"));
-                            email.setEmailAddress(emails.getString("EmailAddress"));
-                            newContact.setPrivateEmailAddresses(email);
+                            email.setPrivateEmailAddress(emails.getString("PrivateEmailAddress"));
+                            newContact.setEmailAddress(email);
                         }
                     }
-                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Category=work AND Communicators.OwnerID="+contactID)){
+                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID="+contactID)){
                         while(emails.next()){
                             Email email = new Email();
                             email.setId(emails.getInt("ID"));
-                            email.setCategory(emails.getString("Category"));
                             email.setNote(emails.getString("Note"));
                             email.setLabel(emails.getString("Label"));
-                            email.setEmailAddress(emails.getString("EmailAddress"));
-                            newContact.setWorkEmailAddress(email);
+                            email.setWorkEmailAddress(emails.getString("EmailAddress"));
+                            newContact.setEmailAddress(email);
                         }
                     }
-                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Category=private Communicators.OwnerID="+contactID)){
+                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID="+contactID)){
                         while(phoneNumbers.next()){
                             PhoneNumber phoneNumber = new PhoneNumber();
                             phoneNumber.setId(phoneNumbers.getInt("ID"));
-                            phoneNumber.setCategory(phoneNumbers.getString("Category"));
                             phoneNumber.setNote(phoneNumbers.getString("Note"));
                             phoneNumber.setLabel(phoneNumbers.getString("Label"));
-                            phoneNumber.setNumber(phoneNumbers.getString("Number"));
-                            phoneNumber.setNetwork((phoneNumbers.getString("Network")));
-                            newContact.setPrivatePhoneNumber(phoneNumber);
+                            phoneNumber.setPrivateNumber(phoneNumbers.getString("Number"));
+                            phoneNumber.setPrivateNetwork((phoneNumbers.getString("Network")));
+                            newContact.setPhoneNumber(phoneNumber);
                         }
                     }
-                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Category=work Communicators.OwnerID="+contactID)){
+                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID="+contactID)){
                         while(phoneNumbers.next()){
                             PhoneNumber phoneNumber = new PhoneNumber();
                             phoneNumber.setId(phoneNumbers.getInt("ID"));
-                            phoneNumber.setCategory(phoneNumbers.getString("Category"));
                             phoneNumber.setNote(phoneNumbers.getString("Note"));
                             phoneNumber.setLabel(phoneNumbers.getString("Label"));
-                            phoneNumber.setNumber(phoneNumbers.getString("Number"));
-                            phoneNumber.setNetwork((phoneNumbers.getString("Network")));
-                            newContact.setWorkPhoneNumber(phoneNumber);
+                            phoneNumber.setWorkNumber(phoneNumbers.getString("Number"));
+                            phoneNumber.setWorkNetwork(phoneNumbers.getString("Network"));
+                            newContact.setPhoneNumber(phoneNumber);
                         }
                     }
                     ContactInformation contactInformation = new ContactInformation();

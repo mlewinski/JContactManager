@@ -1,12 +1,14 @@
 package org.jcontactmanager.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import org.jcontactmanager.JavaFxMain;
 
 public class RootLayoutController {
     @FXML
     private Label usernameLabel;
+
     @FXML
     private Label pathLabel;
 
@@ -21,6 +23,7 @@ public class RootLayoutController {
     public void setPathLabel(String path){
         pathLabel.setText(path);
     }
+
 
     @FXML
     private void handleNew()
