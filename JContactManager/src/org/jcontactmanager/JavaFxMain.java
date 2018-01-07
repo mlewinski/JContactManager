@@ -64,7 +64,6 @@ public class JavaFxMain extends Application {
         else {
 
             showContactOverview();
-            showSettings();
         }
     }
 
