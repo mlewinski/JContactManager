@@ -13,10 +13,8 @@ import java.util.List;
  */
 public class Contact implements IStoreable {
     private IntegerProperty id = new SimpleIntegerProperty();
-    private ObjectProperty<Email> privateEmailAddress = new SimpleObjectProperty<>();
-    private ObjectProperty<Email> workEmailAddress = new SimpleObjectProperty<>();
-    private ObjectProperty<PhoneNumber> privatePhoneNumber = new SimpleObjectProperty<>();
-    private ObjectProperty<PhoneNumber> workPhoneNumber = new SimpleObjectProperty<>();
+    private ObjectProperty<Email> emailAddress = new SimpleObjectProperty<>();
+    private ObjectProperty<PhoneNumber> phoneNumber = new SimpleObjectProperty<>();
     private ObjectProperty<ContactInformation> contactInformation = new SimpleObjectProperty<>();
 
     public int getId() {
@@ -31,51 +29,28 @@ public class Contact implements IStoreable {
         this.id.set(id);
     }
 
-    public Email getPrivateEmailAddress() {
-        return privateEmailAddress.get();
+    public Email getEmailAddress() {
+        return emailAddress.get();
     }
 
-    public ObjectProperty<Email> getPrivateEmailAddressesProperty() {
-        return privateEmailAddress;
+    public ObjectProperty<Email> emailAddressProperty() {
+        return emailAddress;
     }
 
-    public void setPrivateEmailAddresses(Email emailAddress) {
-        this.privateEmailAddress.set(emailAddress);
-    }
-    public Email getWorkEmailAddress() {
-        return workEmailAddress.get();
+    public void setEmailAddress(Email emailAddress) {
+        this.emailAddress.set(emailAddress);
     }
 
-    public ObjectProperty<Email> getWorkEmailAddressesProperty() {
-        return workEmailAddress;
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber.get();
     }
 
-    public void setWorkEmailAddress(Email emailAddress) {
-        this.workEmailAddress.set(emailAddress);
+    public ObjectProperty<PhoneNumber> phoneNumberProperty() {
+        return phoneNumber;
     }
 
-    public PhoneNumber getPrivatePhoneNumber() {
-        return privatePhoneNumber.get();
-    }
-
-    public ObjectProperty<PhoneNumber> getPrivatePhoneNumberProperty() {
-        return privatePhoneNumber;
-    }
-
-    public void setPrivatePhoneNumber(PhoneNumber phoneNumber) {
-        this.privatePhoneNumber.set(phoneNumber);
-    }
-
-    public PhoneNumber getWorkPhoneNumber() {
-        return workPhoneNumber.get();
-    }
-
-    public ObjectProperty<PhoneNumber> getWorkPhoneNumberProperty() {
-        return workPhoneNumber;
-    }
-
-    public void setWorkPhoneNumber(PhoneNumber phoneNumber) {
-        this.workPhoneNumber.set(phoneNumber);
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber.set(phoneNumber);
     }
 
     public ContactInformation getContactInformation() {
