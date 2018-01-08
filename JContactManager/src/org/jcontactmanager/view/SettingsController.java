@@ -34,6 +34,23 @@ public class SettingsController {
         globalDatabaseProperties = props;
     }
 
+    public void init(){
+        if(globalApplicationProperties!=null) {
+            if (!globalApplicationProperties.containsKey("env.username")) textDisplayName.setText("");
+            else textDisplayName.setText(globalApplicationProperties.getProperty("env.username"));
+            if (!globalApplicationProperties.containsKey("view.background")) textBackgroundImage.setText("");
+            else textBackgroundImage.setText(globalApplicationProperties.getProperty("view.background"));
+        }
+        if(globalDatabaseProperties!=null) {
+            if (!globalDatabaseProperties.containsKey("jdbc.url")) textJdbcUrl.setText("");
+            else textJdbcUrl.setText(globalDatabaseProperties.getProperty("jdbc.url"));
+            if (!globalDatabaseProperties.containsKey("jdbc.username")) textJdbcUsername.setText("");
+            else textJdbcUsername.setText(globalDatabaseProperties.getProperty("jdbc.username"));
+            if (!globalDatabaseProperties.containsKey("jdbc.password")) textJdbcPassword.setText("");
+            else textJdbcPassword.setText(globalDatabaseProperties.getProperty("jdbc.password"));
+        }
+    }
+
     @FXML
     private void handleSave(){
         try {

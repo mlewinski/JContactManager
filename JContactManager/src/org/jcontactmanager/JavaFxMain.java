@@ -205,6 +205,7 @@ public class JavaFxMain extends Application {
             SettingsController stcl = loader.getController();
             stcl.setGlobalApplicationProperties(applicationProperties);
             stcl.setGlobalDatabaseProperties(databaseProperties);
+            stcl.init();
             rootLayoutController.setPathLabel("Settings");
 
             rootLayout.setCenter(personOverview);
