@@ -110,7 +110,9 @@ public class JavaFxMain extends Application {
             if(applicationProperties!=null && applicationProperties.containsKey("view.background") && !applicationProperties.getProperty("view.background").isEmpty()) {
                 File f = new File(applicationProperties.getProperty("view.background"));
                 if (f.exists()) {
-                    BackgroundImage backgroundImage = new BackgroundImage(new Image(applicationProperties.getProperty("view.background"), primaryStage.getWidth(), primaryStage.getHeight(), false, true),
+                    BackgroundImage backgroundImage = new BackgroundImage(
+                            new Image("file:///"+applicationProperties.getProperty("view.background"),
+                                    primaryStage.getWidth(), primaryStage.getHeight(), false, true),
                             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
                     rootLayout.setBackground(new Background(backgroundImage));
                 }
