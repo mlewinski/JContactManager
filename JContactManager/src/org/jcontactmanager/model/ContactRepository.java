@@ -3,19 +3,26 @@ package org.jcontactmanager.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import org.jcontactmanager.util.JcmLogger;
+import org.omg.CORBA.Environment;
 
+import javax.naming.OperationNotSupportedException;
 import java.nio.file.*;
 import java.sql.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 
 public class ContactRepository {
 
     private ObservableList<Contact> _repository;
+    private final JcmLogger logger;
 
     public ContactRepository(){
         _repository = FXCollections.observableArrayList();
+        logger = new JcmLogger("logs/log-"+(new SimpleDateFormat("dd-MM-yyyy").format(new Date()))+".txt");
         loadContacts();
     }
 
@@ -40,6 +47,16 @@ public class ContactRepository {
         try{
             fetchAllContacts();
         } catch(SQLException e){
+            try {
+                logger.LogError(e.getMessage());
+            } catch(IOException superException){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Super Exception Occurred");
+                alert.setHeaderText("The application has encountered super error while trying to access the log file. Application cannot continue. Check permissions of logs directory.");
+                alert.setContentText(superException.getMessage());
+                alert.showAndWait();
+                System.exit(-1);
+            }
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Problem with the database");
             alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
