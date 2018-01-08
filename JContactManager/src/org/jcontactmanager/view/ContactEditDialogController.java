@@ -51,9 +51,6 @@ public class ContactEditDialogController {
         this.dialogStage = dialogStage;
     }
 
-    //TODO: Dorobic pola w fxmlu i dopisac pola w Controllerze oraz zaimplementować logikę dodawania do bazy
-    //TODO: SET contact jest źle zaimplementowane, trzeba przekazać podobnie jak w HandleOK()
-
 
     public void setContact(Contact contact) {
 

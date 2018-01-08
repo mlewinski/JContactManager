@@ -62,7 +62,6 @@ public class JavaFxMain extends Application {
             }
         }
         else {
-
             showContactOverview();
         }
     }
@@ -105,6 +104,7 @@ public class JavaFxMain extends Application {
             loader.setLocation(JavaFxMain.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
             rootLayoutController = loader.getController();
+            rootLayoutController.setJavaFxMain(this);
             if(applicationProperties == null || !applicationProperties.containsKey("env.username")) {
                 rootLayoutController.setUsername("---");
             }

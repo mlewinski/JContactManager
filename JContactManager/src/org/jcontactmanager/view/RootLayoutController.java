@@ -16,8 +16,8 @@ public class RootLayoutController {
 
     public void setJavaFxMain (JavaFxMain javaFxMain) {this.javaFxMain=javaFxMain;}
 
-    public void setUsername(String uname){
-        usernameLabel.setText(uname);
+    public void setUsername(String username){
+        usernameLabel.setText(username);
     }
 
     public void setPathLabel(String path){
@@ -25,9 +25,16 @@ public class RootLayoutController {
     }
 
 
+
     @FXML
-    private void handleNew()
-    {
-        javaFxMain.getContactInformationData().clear();
-    }
+    private void handleSettings(){javaFxMain.showSettings();}
+
+    @FXML
+    private void handleContactOverview(){javaFxMain.showContactOverview();}
+
+    @FXML
+    private void handleHome(){}
+
+    @FXML
+    private void handleStatistics(){}
 }
