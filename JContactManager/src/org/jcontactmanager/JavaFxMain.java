@@ -1,6 +1,5 @@
 package org.jcontactmanager;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,17 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jcontactmanager.model.*;
-import org.jcontactmanager.util.BusinessCardGenerator;
-import org.jcontactmanager.view.ContactEditDialogController;
-import org.jcontactmanager.view.ContactOverviewController;
-import org.jcontactmanager.view.RootLayoutController;
-import org.jcontactmanager.view.SettingsController;
+import org.jcontactmanager.view.*;
+import sun.plugin.javascript.navig.Anchor;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -62,7 +57,7 @@ public class JavaFxMain extends Application {
             }
         }
         else {
-            showContactOverview();
+            showHome();
         }
     }
 
@@ -153,19 +148,7 @@ public class JavaFxMain extends Application {
         }
     }
 
-//    public void showSettings(){
-//        try{
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(JavaFxMain.class.getResource("view/Settings.fxml"));
-//            AnchorPane settings = (AnchorPane) loader.load();
-//            SettingsController settingsController = loader.getController();
-//            rootLayoutController.setPathLabel("Settings");
-//
-//            rootLayout.setCenter(settings);
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//    }
+
 
     public boolean showContactEditingDialog(Contact contact)
     {
@@ -182,14 +165,15 @@ public class JavaFxMain extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            //Person into controller
+            //Contact into controller
             ContactEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
             controller.setContact(contact);
 
             //Show the dialog
             dialogStage.showAndWait();
 
-            return controller.isOkClicekd();
+            return controller.isClicked();
         }catch (IOException e){
             e.printStackTrace();
             return false;
@@ -211,6 +195,34 @@ public class JavaFxMain extends Application {
             rootLayout.setCenter(personOverview);
         }
         catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showHome() {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(JavaFxMain.class.getResource("view/Home.fxml"));
+                AnchorPane homeOverview = (AnchorPane) loader.load();
+                HomeController homeController = loader.getController();
+                homeController.setJavaFxMain(this);
+                rootLayoutController.setPathLabel("Home");
+                rootLayout.setCenter(homeOverview);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    public void showStatistics(){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(JavaFxMain.class.getResource("view/Statistics.fxml"));
+            AnchorPane statisticsOverview = (AnchorPane) loader.load();
+            StatisticsController statisticsController = loader.getController();
+            statisticsController.setJavaFxMain(this);
+            rootLayoutController.setPathLabel("Statistics");
+            rootLayout.setCenter(statisticsOverview);
+        }catch (IOException e)
+        {
             e.printStackTrace();
         }
     }

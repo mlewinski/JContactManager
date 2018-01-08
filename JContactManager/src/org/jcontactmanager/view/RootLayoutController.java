@@ -33,8 +33,8 @@ public class RootLayoutController {
     private void handleContactOverview(){javaFxMain.showContactOverview();}
 
     @FXML
-    private void handleHome(){}
+    private void handleHome(){ javaFxMain.showHome();}
 
     @FXML
-    private void handleStatistics(){}
+    private void handleStatistics(){ javaFxMain.showStatistics();}
 }

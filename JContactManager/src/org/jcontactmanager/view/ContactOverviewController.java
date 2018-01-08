@@ -30,9 +30,6 @@ public class ContactOverviewController {
 
     private JavaFxMain javaFxMain;
 
-    public ContactOverviewController(){
-
-    };
 
     @FXML
     private void initialize(){
@@ -51,7 +48,7 @@ public class ContactOverviewController {
     private void handleNewContact()
     {
         Contact tempContact = new Contact();
-        boolean okClicked = javaFxMain.showContactEditingDialog(tempContact);
+        boolean okClicked = javaFxMain.showContactEditingDialog(null);
         if(okClicked){
             javaFxMain.getContactInformationData().add(tempContact);
         }
