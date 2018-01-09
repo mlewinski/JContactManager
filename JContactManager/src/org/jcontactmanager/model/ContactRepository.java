@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import org.jcontactmanager.util.JcmLogger;
-import org.omg.CORBA.Environment;
 
-import javax.naming.OperationNotSupportedException;
 import java.nio.file.*;
 import java.sql.*;
 import java.io.*;
@@ -22,7 +20,7 @@ public class ContactRepository {
 
     public ContactRepository(){
         _repository = FXCollections.observableArrayList();
-        logger = new JcmLogger("logs/log-"+(new SimpleDateFormat("dd-MM-yyyy").format(new Date()))+".txt");
+        logger = new JcmLogger("logs/log-" +(new SimpleDateFormat("dd-MM-yyyy").format(new Date()))+".txt");
         loadContacts();
     }
 

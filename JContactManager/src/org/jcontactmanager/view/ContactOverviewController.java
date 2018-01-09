@@ -33,7 +33,7 @@ public class ContactOverviewController {
 
     @FXML
     private void initialize(){
-       // idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty()); //parse to other
+        //idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty()); //parse to other
         nicknameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNicknameProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNameProperty());
         genderColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getGenderProperty());
@@ -48,7 +48,7 @@ public class ContactOverviewController {
     private void handleNewContact()
     {
         Contact tempContact = new Contact();
-        boolean okClicked = javaFxMain.showContactEditingDialog(null);
+        boolean okClicked = javaFxMain.showContactEditingDialog(null); //TODO: Zmienic nulla na tempcontact
         if(okClicked){
             javaFxMain.getContactInformationData().add(tempContact);
         }
@@ -66,6 +66,23 @@ public class ContactOverviewController {
             alert.setTitle("No selection");
             alert.setHeaderText("No contact selected");
             alert.setContentText("Please select a contact in the table.");
+        }
+    }
+
+    @FXML
+    private void handleDeletePerson(){
+        int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
+        if(selectedIndex >= 0){
+            contactTable.getItems().remove(selectedIndex);
+        }else {
+            //Nothings selected
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(javaFxMain.getPrimaryStage());
+            alert.setTitle("No selection");
+            alert.setHeaderText("No Contact selected");
+            alert.setContentText("Please select a person in the table");
+
+            alert.showAndWait();
         }
     }
 
