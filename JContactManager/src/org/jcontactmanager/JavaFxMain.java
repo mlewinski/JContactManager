@@ -17,6 +17,7 @@ import sun.plugin.javascript.navig.Anchor;
 
 import java.io.*;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.util.Properties;
 
 public class JavaFxMain extends Application {
@@ -62,7 +63,8 @@ public class JavaFxMain extends Application {
     }
 
     public JavaFxMain(){
-        //contactInformationData.add(new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"));
+
+                //contactInformationData.add(new ContactInformation(1,"name","nickname","gender","addres","city","contry","note","website"));
         repository = new ContactRepository();
         contactInformationData = repository.getRepositoryReference();
         try {
@@ -218,7 +220,7 @@ public class JavaFxMain extends Application {
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(JavaFxMain.class.getResource("view/Statistics.fxml"));
-            AnchorPane statisticsOverview = (AnchorPane) loader.load();
+            Pane statisticsOverview = (Pane) loader.load();
             StatisticsController statisticsController = loader.getController();
             statisticsController.setJavaFxMain(this);
             rootLayoutController.setPathLabel("Statistics");

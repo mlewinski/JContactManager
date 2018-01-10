@@ -7,6 +7,10 @@ import javafx.scene.control.TableView;
 import org.jcontactmanager.JavaFxMain;
 import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactInformation;
+import org.jcontactmanager.model.ContactRepository;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 
 public class ContactOverviewController {
@@ -66,6 +70,7 @@ public class ContactOverviewController {
             alert.setTitle("No selection");
             alert.setHeaderText("No contact selected");
             alert.setContentText("Please select a contact in the table.");
+
         }
     }
 
@@ -74,6 +79,24 @@ public class ContactOverviewController {
         int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0){
             contactTable.getItems().remove(selectedIndex);
+
+            Contact deletedContact = new Contact();
+            deletedContact.getId();
+            deletedContact.getPhoneNumber().getId();
+            deletedContact.getEmailAddress().getId();
+            deletedContact.getContactInformation();
+
+            try {
+                ContactRepository contactRepository = new ContactRepository();
+                contactRepository.save(deletedContact.deleteQuery());
+                contactRepository.save(deletedContact.getEmailAddress().deleteQuery());
+                contactRepository.save(deletedContact.getPhoneNumber().deleteQuery());
+                contactRepository.save(deletedContact.getContactInformation().deleteQuery());
+            }catch(SQLException e){
+
+            }catch (IOException e){
+
+            }
         }else {
             //Nothings selected
             Alert alert = new Alert(Alert.AlertType.WARNING);

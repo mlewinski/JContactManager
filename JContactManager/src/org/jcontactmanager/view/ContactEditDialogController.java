@@ -80,6 +80,7 @@ public class ContactEditDialogController {
     //dodawanie
     @FXML
     private void handleOK() throws SQLException,IOException{
+
             Random random = new Random();
             int contactId = random.nextInt();
             int communicatorId = random.nextInt();
