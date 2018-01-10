@@ -74,3 +74,5 @@ fabric.properties
 JContactManager/\.idea/workspace\.xml
 JContactManager/resources/*.properties
 *.properties
+
+logs/
