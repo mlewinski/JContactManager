@@ -28,6 +28,11 @@ public class JcmLogger {
         logFile = file;
     }
 
+    /**
+     * Logs general message to a log file
+     * @param message Message to be logged
+     * @throws IOException
+     */
     public void LogMessage(String message) throws IOException{
         try{
             if(!logFile.exists()) logFile.createNewFile();
@@ -38,6 +43,11 @@ public class JcmLogger {
         }
     }
 
+    /**
+     * Logs warning to a log file
+     * @param message Warning message
+     * @throws IOException
+     */
     public void LogWarning(String message) throws IOException{
         try{
             if(!logFile.exists()) logFile.createNewFile();
@@ -48,6 +58,11 @@ public class JcmLogger {
         }
     }
 
+    /**
+     * Logs information to a log file
+     * @param message Info message
+     * @throws IOException
+     */
     public void LogInfo(String message) throws IOException{
         try{
             if(!logFile.exists()) logFile.createNewFile();
@@ -58,6 +73,11 @@ public class JcmLogger {
         }
     }
 
+    /**
+     * Logs error message to a log file
+     * @param message Error message
+     * @throws IOException
+     */
     public void LogError(String message) throws IOException{
         try{
             if(!logFile.exists()) logFile.createNewFile();

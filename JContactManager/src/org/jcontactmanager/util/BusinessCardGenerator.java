@@ -12,6 +12,11 @@ import java.io.IOException;
 
 
 public class BusinessCardGenerator {
+    /**
+     * Generate PDF file with contact's business card
+     * @param contact Contact whose business card will be generated
+     * @param path A path under which the business card will be saved
+     */
     public void generateBusinessCard(Contact contact, String path){
         try {
             ContactInformation ci = contact.getContactInformation();
