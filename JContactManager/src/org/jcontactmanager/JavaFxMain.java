@@ -174,6 +174,7 @@ public class JavaFxMain extends Application {
             ContactEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setContact(contact);
+            controller.setJavaFxMain(this);
 
             //Show the dialog
             dialogStage.showAndWait();

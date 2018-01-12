@@ -19,6 +19,16 @@ public class Contact implements IStoreable {
     private ObjectProperty<PhoneNumber> phoneNumber = new SimpleObjectProperty<>();
     private ObjectProperty<ContactInformation> contactInformation = new SimpleObjectProperty<>();
 
+    public Contact(IntegerProperty id, ObjectProperty<Email> emailAddress, ObjectProperty<PhoneNumber> phoneNumber, ObjectProperty<ContactInformation> contactInformation) {
+        this.id = id;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.contactInformation = contactInformation;
+    }
+
+    public Contact() {
+    }
+
     public int getId() {
         return id.get();
     }

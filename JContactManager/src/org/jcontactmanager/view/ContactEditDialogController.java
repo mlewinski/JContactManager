@@ -46,6 +46,10 @@ public class ContactEditDialogController {
     private Contact contact;
     private boolean isClicked = false;
 
+    public void setJavaFxMain(JavaFxMain javaFxMain) {
+        this.javaFxMain = javaFxMain;
+    }
+
     private void initialize() {
     }
 
