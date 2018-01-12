@@ -18,34 +18,45 @@ public class ContactRepository {
     private ObservableList<Contact> _repository;
     private final JcmLogger logger;
 
-    public ContactRepository(){
+    public ContactRepository() {
         _repository = FXCollections.observableArrayList();
-        logger = new JcmLogger("logs/log-" +(new SimpleDateFormat("dd-MM-yyyy").format(new Date()))+".txt");
+        logger = new JcmLogger("logs/log-" + (new SimpleDateFormat("dd-MM-yyyy").format(new Date())) + ".txt");
         loadContacts();
     }
 
-    public ObservableList<Contact> getRepositoryReference(){
+    /**
+     * Returns a reference to the list  that contains fetched contacts
+     * @return List of contacts reference
+     */
+    public ObservableList<Contact> getRepositoryReference() {
         return _repository;
     }
 
-    public void update(String sql){
+    public void update(String sql) {
 
     }
 
-    public void delete(String sql){
+    public void delete(String sql) {
 
     }
 
-    public void save(String sql) throws SQLException, IOException{
-        try(Connection conn = getConnection(); Statement stm = conn.createStatement()){
+    /**
+     * Save object to a database
+     * @param sql SQL representation of an object
+     *            @see IStoreable
+     * @throws SQLException
+     * @throws IOException
+     */
+    public void save(String sql) throws SQLException, IOException {
+        try (Connection conn = getConnection(); Statement stm = conn.createStatement()) {
             stm.executeUpdate(sql);
-            }catch(SQLException e){
+        } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Problem with the database");
             alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-        }catch(IOException ex){
+        } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("The database config file cannot be accessed");
             alert.setHeaderText("The application cannot find the database.properties file or it is inaccessible. Please generate a new config file using Settings.");
@@ -54,13 +65,16 @@ public class ContactRepository {
         }
     }
 
-    private void loadContacts(){
-        try{
+    /**
+     * Load contacts from the database with the exceptions control.
+     */
+    private void loadContacts() {
+        try {
             fetchAllContacts();
-        } catch(SQLException e){
+        } catch (SQLException e) {
             try {
                 logger.LogError(e.getMessage());
-            } catch(IOException superException){
+            } catch (IOException superException) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Super Exception Occurred");
                 alert.setHeaderText("The application has encountered super error while trying to access the log file. Application cannot continue. Check permissions of logs directory.");
@@ -73,8 +87,7 @@ public class ContactRepository {
             alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("The database config file cannot be accessed");
             alert.setHeaderText("The application cannot find the database.properties file or it is inaccessible. Please generate a new config file using Settings.");
@@ -83,16 +96,21 @@ public class ContactRepository {
         }
     }
 
-    private void fetchAllContacts() throws SQLException, IOException{
-        try(Connection conn = getConnection(); Statement stm = conn.createStatement()){
-            try(ResultSet contacts = stm.executeQuery("SELECT * FROM `Contacts` ")){
-                if(contacts == null) return;
-                while(contacts.next()){
+    /**
+     * Retrieves all contacts from the database and builds the object tree
+     * @throws SQLException
+     * @throws IOException
+     */
+    private void fetchAllContacts() throws SQLException, IOException {
+        try (Connection conn = getConnection(); Statement stm = conn.createStatement()) {
+            try (ResultSet contacts = stm.executeQuery("SELECT * FROM `Contacts` ")) {
+                if (contacts == null) return;
+                while (contacts.next()) {
                     Contact newContact = new Contact();
                     int contactID = contacts.getInt("ID");
                     newContact.setId(contactID);
-                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID="+contactID)){
-                        while(emails.next()){
+                    try (ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID=" + contactID)) {
+                        while (emails.next()) {
                             Email email = new Email();
                             email.setId(emails.getInt("ID"));
                             email.setNote(emails.getString("Note"));
@@ -101,8 +119,8 @@ public class ContactRepository {
                             newContact.setEmailAddress(email);
                         }
                     }
-                    try(ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID="+contactID)){
-                        while(emails.next()){
+                    try (ResultSet emails = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `Emails` ON Communicators.ID=Emails.ID WHERE Communicators.OwnerID=" + contactID)) {
+                        while (emails.next()) {
                             Email email = new Email();
                             email.setId(emails.getInt("ID"));
                             email.setNote(emails.getString("Note"));
@@ -111,8 +129,8 @@ public class ContactRepository {
                             newContact.setEmailAddress(email);
                         }
                     }
-                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID="+contactID)){
-                        while(phoneNumbers.next()){
+                    try (ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID=" + contactID)) {
+                        while (phoneNumbers.next()) {
                             PhoneNumber phoneNumber = new PhoneNumber();
                             phoneNumber.setId(phoneNumbers.getInt("ID"));
                             phoneNumber.setNote(phoneNumbers.getString("Note"));
@@ -122,8 +140,8 @@ public class ContactRepository {
                             newContact.setPhoneNumber(phoneNumber);
                         }
                     }
-                    try(ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID="+contactID)){
-                        while(phoneNumbers.next()){
+                    try (ResultSet phoneNumbers = conn.createStatement().executeQuery("SELECT * FROM `Communicators` INNER JOIN `PhoneNumbers` ON Communicators.ID=PhoneNumbers.ID WHERE Communicators.OwnerID=" + contactID)) {
+                        while (phoneNumbers.next()) {
                             PhoneNumber phoneNumber = new PhoneNumber();
                             phoneNumber.setId(phoneNumbers.getInt("ID"));
                             phoneNumber.setNote(phoneNumbers.getString("Note"));
@@ -134,8 +152,8 @@ public class ContactRepository {
                         }
                     }
                     ContactInformation contactInformation = new ContactInformation();
-                    try(ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactInformations` WHERE ID="+contactID)){
-                        while(contactInfo.next()){
+                    try (ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactInformations` WHERE ID=" + contactID)) {
+                        while (contactInfo.next()) {
                             contactInformation.setId(contactInfo.getInt("ID"));
                             contactInformation.setName(contactInfo.getString("Name"));
                             contactInformation.setAddress(contactInfo.getString("Address"));
@@ -154,14 +172,20 @@ public class ContactRepository {
         }
     }
 
-    private static Connection getConnection() throws SQLException, IOException{
+    /**
+     * Returns a configured connection object
+     * @return JDBC connection object
+     * @throws SQLException
+     * @throws IOException
+     */
+    private static Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
 
-        try(InputStream in = Files.newInputStream(Paths.get(".", "/", "JContactManager/database.properties").normalize())){
+        try (InputStream in = Files.newInputStream(Paths.get(".", "/", "JContactManager/database.properties").normalize())) {
             props.load(in);
         }
         String drivers = props.getProperty("jdbc.drivers");
-        if(drivers!=null) System.setProperty("jdbc.drivers", drivers);
+        if (drivers != null) System.setProperty("jdbc.drivers", drivers);
         String url = props.getProperty("jdbc.url");
         String uname = props.getProperty("jdbc.username");
         String pass = props.getProperty("jdbc.password");
