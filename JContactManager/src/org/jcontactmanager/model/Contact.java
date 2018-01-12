@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import java.util.Date;
 import java.util.List;
 
+import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
+
 /**
  * Created by mlewinski on 11/10/17.
  */
@@ -66,18 +68,18 @@ public class Contact implements IStoreable {
     }
 
     @Override
-    public String saveQuery() {
-        return null;
+    public String saveQuery(){
+        return sanitizeQuery("INSERT INTO Emails VALUES(" + this.id + "," + getContactInformation().getId() + "," + getPhoneNumber().getId() + ")");
     }
 
     @Override
     public String updateQuery() {
-        return null;
+        return sanitizeQuery("UPDATE Emails SET ID="+this.id+", ContactInformationId=" + getContactInformation().getId() + ", CommunicatorId=" + getPhoneNumber().getId());
     }
 
     @Override
     public String deleteQuery() {
-        return null;
+        return sanitizeQuery("DELETE FROM Emails WHERE ID =" + this.id);
     }
 
     @Override

@@ -18,6 +18,7 @@ import sun.plugin.javascript.navig.Anchor;
 import java.io.*;
 import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class JavaFxMain extends Application {
@@ -229,6 +230,21 @@ public class JavaFxMain extends Application {
         {
             e.printStackTrace();
         }
+    }
+
+    public void setContactRepository(String contact, String contactInformation, String email, String phoneNumber){
+        try{
+            repository.save(contact);
+            repository.save(contactInformation);
+            repository.save(email);
+            repository.save(phoneNumber);
+        }catch (SQLException e)
+        {
+
+        }catch (IOException e){
+
+        }
+
     }
 
     public Stage getPrimaryStage(){

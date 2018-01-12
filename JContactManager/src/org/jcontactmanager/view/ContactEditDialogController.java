@@ -4,6 +4,7 @@ import com.sun.xml.internal.bind.v2.model.core.ID;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.jcontactmanager.JavaFxMain;
 import org.jcontactmanager.model.*;
 
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class ContactEditDialogController {
     private TextField noteField;
 
     private Stage dialogStage;
+    private JavaFxMain javaFxMain;
     private Contact contact;
     private boolean isClicked = false;
 
@@ -92,12 +94,12 @@ public class ContactEditDialogController {
             contact.setEmailAddress(new Email(communicatorId,privateEmailAddressField.getText(),workEmailAddressField.getText(),noteField.getText()));
             contact.setPhoneNumber(new PhoneNumber(communicatorId, workPhoneNumberField.getText(),privatePhoneNumberField.getText(),workNetworkField.getText(),privateNetworkField.getText()));
 
-            ContactRepository contactRepository = new ContactRepository();
-            contactRepository.save(contact.getContactInformation().saveQuery());
-            contactRepository.save(contact.getPhoneNumber().saveQuery());
-            contactRepository.save(contact.getEmailAddress().saveQuery());
-            contactRepository.save(contact.saveQuery());
+            String contactInformationSQL = contact.getContactInformation().saveQuery();
+            String phoneNumberSQL = contact.getPhoneNumber().saveQuery();
+            String emailSQL = contact.getEmailAddress().saveQuery();
+            String contactSQL = contact.saveQuery();
 
+            javaFxMain.setContactRepository(contactInformationSQL,phoneNumberSQL,emailSQL,contactSQL);
 
             isClicked = true;
             dialogStage.close();
