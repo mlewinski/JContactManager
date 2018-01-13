@@ -93,8 +93,8 @@ public class ContactEditDialogController {
         Contact contact = new Contact();
         contact.setId(contactId);
         contact.setContactInformation(new ContactInformation(contactId, nameField.getText(), nicknameField.getText(), genderField.getText(), addressField.getText(),
-                cityField.getText(), "countryField.getText()", noteField.getText(), websiteField.getText())); //dorobic countryField w interfejsie
-        contact.setMessengers(new Messengers(contactId,noteField.getText(),new Email(contactId, privateEmailAddressField.getText(), workEmailAddressField.getText(), noteField.getText()),
+                cityField.getText(), countryField.getText(), noteField.getText(), websiteField.getText()));
+        contact.setMessengers(new Messengers(contactId,"0",new Email(contactId, privateEmailAddressField.getText(), workEmailAddressField.getText(), noteField.getText()),
                                 new PhoneNumber(contactId, workPhoneNumberField.getText(), privatePhoneNumberField.getText(), workNetworkField.getText(), privateNetworkField.getText())));
 
         String contactInformationSQL = contact.getContactInformation().saveQuery();

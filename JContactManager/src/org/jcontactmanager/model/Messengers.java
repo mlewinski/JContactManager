@@ -21,6 +21,9 @@ public class Messengers implements IStoreable {
         this.phoneNumbers = new SimpleObjectProperty(phoneNumbers);
     }
 
+    public Messengers() {
+    }
+
     public int getId() {
         return id.get();
     }
