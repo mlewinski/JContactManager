@@ -216,12 +216,12 @@
 }
 
 .background-home {
-    -fx-background-color: #ffffff;
+    -fx-background-color: rgba(33,33,33,0.9);
 }
 .title-home {
      -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
      -fx-font-size: 25pt;
-     -fx-text-fill: black;
+     -fx-text-fill: rgba(255,255,255,0.9);
 }
 
 .statistics{

@@ -3,22 +3,43 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane opacity="0.9" prefHeight="444.0" prefWidth="745.0" stylesheets="@styles/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.StatisticsController">
+<AnchorPane opacity="0.9" prefHeight="444.0" prefWidth="745.0" styleClass="background-home" stylesheets="@styles/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.StatisticsController">
    <children>
-      <Pane layoutX="54.0" layoutY="47.0" opacity="0.9" prefHeight="383.0" prefWidth="677.0" styleClass="background" stylesheets="@styles/DarkTheme.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="444.0" prefWidth="745.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+        </rowConstraints>
          <children>
-            <BarChart layoutY="4.0" opacity="0.9" prefHeight="414.0" prefWidth="715.0">
+            <PieChart fx:id="genderChart" title="Gender Statistics" />
+            <BarChart fx:id="cityChart" title="City Statistics" GridPane.columnIndex="1">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis fx:id="cityChartXAxis" side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
+            <BarChart fx:id="countryChart" title="Country Statistics" GridPane.rowIndex="1">
+              <xAxis>
+                <CategoryAxis fx:id="countryChartXAxis" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <PieChart fx:id="networkChart" title="Mobile Network Statistics" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
-      </Pane>
+      </GridPane>
    </children>
 </AnchorPane>
