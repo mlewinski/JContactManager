@@ -2,6 +2,8 @@ package org.jcontactmanager.model;
 
 import javafx.beans.property.*;
 
+import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
+
 /**
  * Created by mlewinski on 11/10/17.
  */
@@ -11,6 +13,13 @@ public class Messengers implements IStoreable {
     protected StringProperty note = new SimpleStringProperty();
     protected ObjectProperty<Email> emails = new SimpleObjectProperty<>();
     protected ObjectProperty<PhoneNumber> phoneNumbers = new SimpleObjectProperty<>();
+
+    public Messengers(int id, String note, Email emails, PhoneNumber phoneNumbers) {
+        this.id = new SimpleIntegerProperty(id);
+        this.note = new SimpleStringProperty(note);
+        this.emails = new SimpleObjectProperty(emails);
+        this.phoneNumbers = new SimpleObjectProperty(phoneNumbers);
+    }
 
     public int getId() {
         return id.get();
@@ -72,19 +81,19 @@ public class Messengers implements IStoreable {
         this.phoneNumbers.setValue(phoneNumbers);
     }
 
-    @Override
+
     public String saveQuery() {
-        return null;
+        return sanitizeQuery("INSERT INTO Messengers VALUES(" + this.id + "," + this.note + ")");
     }
 
     @Override
     public String updateQuery() {
-        return null;
+        return sanitizeQuery("UPDATE PhoneNumbers SET ID="+this.id+ ", PrivateNumber=" + this.note);
     }
 
     @Override
     public String deleteQuery() {
-        return null;
+        return sanitizeQuery("DELETE FROM PhoneNubmers WHERE ID=" + this.id);
     }
 
     @Override

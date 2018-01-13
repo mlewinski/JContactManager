@@ -89,21 +89,21 @@ public class ContactEditDialogController {
 
         Random random = new Random();
         int contactId = random.nextInt();
-        int communicatorId = random.nextInt();
 
         Contact contact = new Contact();
         contact.setId(contactId);
         contact.setContactInformation(new ContactInformation(contactId, nameField.getText(), nicknameField.getText(), genderField.getText(), addressField.getText(),
                 cityField.getText(), "countryField.getText()", noteField.getText(), websiteField.getText())); //dorobic countryField w interfejsie
-        contact.setEmailAddress(new Email(communicatorId, privateEmailAddressField.getText(), workEmailAddressField.getText(), noteField.getText()));
-        contact.setPhoneNumber(new PhoneNumber(communicatorId, workPhoneNumberField.getText(), privatePhoneNumberField.getText(), workNetworkField.getText(), privateNetworkField.getText()));
+        contact.setMessengers(new Messengers(contactId,noteField.getText(),new Email(contactId, privateEmailAddressField.getText(), workEmailAddressField.getText(), noteField.getText()),
+                                new PhoneNumber(contactId, workPhoneNumberField.getText(), privatePhoneNumberField.getText(), workNetworkField.getText(), privateNetworkField.getText())));
 
         String contactInformationSQL = contact.getContactInformation().saveQuery();
-        String phoneNumberSQL = contact.getPhoneNumber().saveQuery();
-        String emailSQL = contact.getEmailAddress().saveQuery();
+        String phoneNumberSQL = contact.getMessengers().getPhoneNumbers().saveQuery();
+        String emailSQL = contact.getMessengers().getEmails().saveQuery();
         String contactSQL = contact.saveQuery();
+        String messengerSQL = contact.getMessengers().saveQuery();
 
-        javaFxMain.setContactRepository(contactInformationSQL, phoneNumberSQL, emailSQL, contactSQL);
+        javaFxMain.performRepositoryOperation(contactSQL,contactInformationSQL,messengerSQL,emailSQL,phoneNumberSQL);
 
         isClicked = true;
         dialogStage.close();
