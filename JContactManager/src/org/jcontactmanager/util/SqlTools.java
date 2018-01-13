@@ -7,7 +7,7 @@ public class SqlTools {
      * @return Sanitized query
      */
     public static String sanitizeQuery(String query){
-        String sanitizedQuery = query
+        return query
                         .replace("\"", "\\\"")
                         .replace("'","\\'")
                         .replace("%","\\%")
@@ -15,6 +15,5 @@ public class SqlTools {
                         .replace("\b", "\\b")
                         .replace("\t","\\t")
                         .replaceAll("(?i)union", "");
-        return sanitizedQuery;
     }
 }
