@@ -148,16 +148,16 @@ public class ContactInformation implements IStoreable {
 
     @Override
     public String saveQuery() {
-        return sanitizeQuery("INSERT INTO ContactsInformations VALUES(" + this.id + "," + this.name+ "," + this.nickname
-                + "," + this.gender + "," + this.address + "," + this.city + "," + this.country + "," + this.note
-                + "," + this.website+")");
+        return sanitizeQuery("INSERT INTO ContactsInformations VALUES('" + this.id.getValue() + "','" + this.name.getValue()+ "','" + this.nickname.getValue()
+                + "','" + this.gender.getValue() + "','" + this.address.getValue() + "','" + this.city.getValue() + "','" + this.country.getValue() + "','" + this.note.getValue()
+                + "','" + this.website.getValue()+"')");
     }
 
     @Override
     public String updateQuery() {
-        return sanitizeQuery("UPDATE ContactsInformations SET ID="+this.id+", Name="+this.name + ", Nickname=" + this.nickname
-                + ", Gender=" + this.gender + ", Address=" + this.address + ", City=" + this.city + ", Country=" + this.country
-                +   ", Note=" + this.note + ", Website" + this.website);
+        return sanitizeQuery("UPDATE ContactsInformations SET ID='"+this.id+"', Name='"+this.name + "', Nickname='" + this.nickname
+                + "', Gender='" + this.gender + "', Address='" + this.address + "', City='" + this.city + "', Country='" + this.country
+                +   ", Note='" + this.note + "', Website='" + this.website);
     }
 
     @Override

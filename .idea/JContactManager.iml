@@ -11,15 +11,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mysql-connector.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/../itext7-7.0.2/itext7-io-7.0.2.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -47,7 +38,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../slf4j-1.7.25/slf4j-api-1.7.25.jar!/" />
+          <root url="jar://F:/slf4j-api-1.7.25.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -56,7 +47,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://F:/slf4j-api-1.7.25.jar!/" />
+          <root url="jar://F:/mysql-connector.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

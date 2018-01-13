@@ -95,7 +95,7 @@ public class PhoneNumber implements IStoreable{
 
     @Override
     public String saveQuery() {
-        return sanitizeQuery("INSERT INTO PhoneNumbers VALUES(" + this.id + "," + this.privateNumber + "," + this.workNumber + "," + this.privateNetwork + "," + workNetwork + ")");
+        return sanitizeQuery("INSERT INTO PhoneNumbers VALUES('" + this.id.getValue() + "','" + this.privateNumber.getValue() + "','" + this.workNumber.getValue() + "','" + this.privateNetwork.getValue() + "','" + workNetwork.getValue() + "')");
     }
 
     @Override

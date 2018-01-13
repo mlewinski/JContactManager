@@ -70,7 +70,7 @@ public class Email implements IStoreable{
 
     @Override
     public String saveQuery(){
-        return sanitizeQuery("INSERT INTO Emails VALUES(" + this.id + "," + this.privateEmailAddress + "," + this.workEmailAddress + ")");
+        return sanitizeQuery("INSERT INTO Emails VALUES('" + this.id.getValue() + "','" + this.privateEmailAddress.getValue() + "','" + this.workEmailAddress.getValue() + "')");
     }
 
     @Override

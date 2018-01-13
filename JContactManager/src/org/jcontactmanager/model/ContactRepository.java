@@ -96,7 +96,7 @@ public class ContactRepository {
                     Contact newContact = new Contact();
                     int contactID = contacts.getInt("ID");
                     newContact.setId(contactID);
-                    try (ResultSet messengers = conn.createStatement().executeQuery("SELECT * FROM `Messengers` INNER JOIN `Emails` ON Messengers.ID=Emails.ID  INNER JOIN `PhoneNumbers` ON Messengers.ID=PhoneNumbers.ID WHERE Messengers.OwnerID=" + contactID)) {
+                    try (ResultSet messengers = conn.createStatement().executeQuery("SELECT * FROM `Messengers` INNER JOIN `Emails` ON Messengers.ID=Emails.ID  INNER JOIN `PhoneNumbers` ON Messengers.ID=PhoneNumbers.ID WHERE Messengers.ID=" + contactID)) {
                         while (messengers.next()) {
                             Messengers msg = new Messengers();
                             Email email = new Email();
@@ -117,7 +117,7 @@ public class ContactRepository {
                         }
                     }
                     ContactInformation contactInformation = new ContactInformation();
-                    try (ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactInformations` WHERE ID=" + contactID)) {
+                    try (ResultSet contactInfo = conn.createStatement().executeQuery("SELECT * FROM `ContactsInformations` WHERE ID=" + contactID)) {
                         while (contactInfo.next()) {
                             contactInformation.setId(contactInfo.getInt("ID"));
                             contactInformation.setName(contactInfo.getString("Name"));

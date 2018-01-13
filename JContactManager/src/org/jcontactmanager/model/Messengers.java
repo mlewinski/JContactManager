@@ -86,17 +86,17 @@ public class Messengers implements IStoreable {
 
 
     public String saveQuery() {
-        return sanitizeQuery("INSERT INTO Messengers VALUES(" + this.id + "," + this.note + ")");
+        return sanitizeQuery("INSERT INTO Messengers VALUES('" + this.id.getValue() + "','" + this.note.getValue() + "')");
     }
 
     @Override
     public String updateQuery() {
-        return sanitizeQuery("UPDATE PhoneNumbers SET ID="+this.id+ ", PrivateNumber=" + this.note);
+        return sanitizeQuery("UPDATE PhoneNumbers SET ID="+this.id+ ", Note=" + this.note);
     }
 
     @Override
     public String deleteQuery() {
-        return sanitizeQuery("DELETE FROM PhoneNubmers WHERE ID=" + this.id);
+        return sanitizeQuery("DELETE FROM ID WHERE ID=" + this.id);
     }
 
     @Override

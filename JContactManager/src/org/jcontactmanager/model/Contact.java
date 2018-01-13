@@ -62,12 +62,12 @@ public class Contact implements IStoreable {
 
     @Override
     public String saveQuery(){
-        return sanitizeQuery("INSERT INTO Contacts VALUES(" + this.id + "," + getContactInformation().getId()+")");
+        return sanitizeQuery("INSERT INTO Contacts VALUES('" + this.id + "','" + getContactInformation().getId()+"')");
     }
 
     @Override
     public String updateQuery() {
-        return sanitizeQuery("UPDATE Contacts SET ID="+this.id);
+        return sanitizeQuery("UPDATE Contacts SET ID="+this.id.getValue());
     }
 
     @Override
