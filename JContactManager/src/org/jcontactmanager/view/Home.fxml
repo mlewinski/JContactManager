@@ -5,6 +5,6 @@
 
 <AnchorPane prefHeight="444.0" prefWidth="745.0" styleClass="background-home" stylesheets="@styles/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.HomeController">
    <children>
-      <Label fx:id="titleLabel" layoutX="144.0" layoutY="201.0" prefHeight="42.0" prefWidth="458.0" styleClass="title-home" text="Welcome in JContactManager" />
+      <Label fx:id="titleLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="273.0" layoutY="236.0" prefHeight="42.0" prefWidth="458.0" styleClass="title-home" text="Welcome to JContactManager" textFill="#f2f2f2" AnchorPane.rightAnchor="14.0" />
    </children>
 </AnchorPane>

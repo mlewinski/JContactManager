@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane accessibleRole="SCROLL_PANE" cache="true" cacheHint="SCALE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="444.0" minWidth="745.0" opacity="0.9" styleClass="pane" stylesheets="@styles/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.SettingsController">
+<AnchorPane accessibleRole="SCROLL_PANE" cache="true" cacheHint="SCALE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="444.0" minWidth="745.0" opacity="0.9" styleClass="pane" stylesheets="@styles/DarkTheme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jcontactmanager.view.SettingsController">
    <children>
       <GridPane alignment="CENTER" layoutX="152.0" layoutY="15.0" prefHeight="318.0" prefWidth="588.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
         <columnConstraints>
