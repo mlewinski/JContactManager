@@ -5,9 +5,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-import java.util.Date;
-import java.util.List;
-
 import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
 
 /**
@@ -15,15 +12,13 @@ import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
  */
 public class Contact implements IStoreable {
     private IntegerProperty id = new SimpleIntegerProperty();
-    private ObjectProperty<Email> emailAddress = new SimpleObjectProperty<>();
-    private ObjectProperty<PhoneNumber> phoneNumber = new SimpleObjectProperty<>();
+    private ObjectProperty<Messengers> messengers = new SimpleObjectProperty<>();
     private ObjectProperty<ContactInformation> contactInformation = new SimpleObjectProperty<>();
 
-    public Contact(IntegerProperty id, ObjectProperty<Email> emailAddress, ObjectProperty<PhoneNumber> phoneNumber, ObjectProperty<ContactInformation> contactInformation) {
-        this.id = id;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
-        this.contactInformation = contactInformation;
+    public Contact(int id, Messengers messengers, ContactInformation contactInformation) {
+        this.setId(id);
+        this.setMessengers(messengers);
+        this.setContactInformation(contactInformation);
     }
 
     public Contact() {
@@ -41,28 +36,16 @@ public class Contact implements IStoreable {
         this.id.set(id);
     }
 
-    public Email getEmailAddress() {
-        return emailAddress.get();
+    public Messengers getMessengers() {
+        return messengers.get();
     }
 
-    public ObjectProperty<Email> emailAddressProperty() {
-        return emailAddress;
+    public ObjectProperty<Messengers> getMessengersProperty() {
+        return messengers;
     }
 
-    public void setEmailAddress(Email emailAddress) {
-        this.emailAddress.set(emailAddress);
-    }
-
-    public PhoneNumber getPhoneNumber() {
-        return phoneNumber.get();
-    }
-
-    public ObjectProperty<PhoneNumber> phoneNumberProperty() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(PhoneNumber phoneNumber) {
-        this.phoneNumber.set(phoneNumber);
+    public void setMessengers(Messengers messengers){
+        this.messengers.setValue(messengers);
     }
 
     public ContactInformation getContactInformation() {
@@ -79,17 +62,20 @@ public class Contact implements IStoreable {
 
     @Override
     public String saveQuery(){
-        return sanitizeQuery("INSERT INTO Emails VALUES(" + this.id + "," + getContactInformation().getId() + "," + getPhoneNumber().getId() + ")");
+        //return sanitizeQuery("INSERT INTO Emails VALUES(" + this.id + "," + getContactInformation().getId() + "," + getPhoneNumber().getId() + ")");
+        return null;
     }
 
     @Override
     public String updateQuery() {
-        return sanitizeQuery("UPDATE Emails SET ID="+this.id+", ContactInformationId=" + getContactInformation().getId() + ", CommunicatorId=" + getPhoneNumber().getId());
+        //return sanitizeQuery("UPDATE Emails SET ID="+this.id+", ContactInformationId=" + getContactInformation().getId() + ", CommunicatorId=" + getPhoneNumber().getId());
+        return null;
     }
 
     @Override
     public String deleteQuery() {
-        return sanitizeQuery("DELETE FROM Emails WHERE ID =" + this.id);
+        //return sanitizeQuery("DELETE FROM Emails WHERE ID =" + this.id);
+        return null;
     }
 
     @Override

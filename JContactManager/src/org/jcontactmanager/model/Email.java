@@ -15,7 +15,7 @@ import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
 /*
     TODO : zmienić nazwy tabel i kolumn
  */
-public class Email extends Communicator{
+public class Email implements IStoreable{
     private IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty privateEmailAddress = new SimpleStringProperty();
     private StringProperty workEmailAddress = new SimpleStringProperty();
@@ -24,17 +24,14 @@ public class Email extends Communicator{
         this.id = null;
         this.privateEmailAddress = null;
         this.workEmailAddress = null;
-        this.note = null;
     }
 
     public Email(int id, String privateEmailAddress, String workEmailAddress, String note) {
         this.id = new SimpleIntegerProperty(id);
         this.privateEmailAddress = new SimpleStringProperty(privateEmailAddress);
         this.workEmailAddress = new SimpleStringProperty(workEmailAddress);
-        this.note = new SimpleStringProperty(note);
     }
 
-    @Override
     public int getId() {
         return id.get();
     }
@@ -46,22 +43,6 @@ public class Email extends Communicator{
     public void setId(int id) {
         this.id.set(id);
     }
-
-    @Override
-    public String getNote() {
-        return super.getNote();
-    }
-
-    @Override
-    public StringProperty getNoteProperty() {
-        return super.getNoteProperty();
-    }
-
-    @Override
-    public void setNote(String note) {
-        super.setNote(note);
-    }
-
 
     public String getPrivateEmailAddress() {
         return privateEmailAddress.get();

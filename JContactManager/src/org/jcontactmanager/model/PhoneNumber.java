@@ -10,7 +10,7 @@ import static org.jcontactmanager.util.SqlTools.sanitizeQuery;
 /**
  * Created by mlewinski on 11/10/17.
  */
-public class PhoneNumber extends Communicator{
+public class PhoneNumber implements IStoreable{
     private IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty workNumber = new SimpleStringProperty();
     private StringProperty privateNumber = new SimpleStringProperty();
@@ -18,6 +18,11 @@ public class PhoneNumber extends Communicator{
     private StringProperty privateNetwork = new SimpleStringProperty();
 
     public PhoneNumber() {
+        this.id = null;
+        this.workNumber = null;
+        this.workNetwork = null;
+        this.privateNumber = null;
+        this.privateNetwork = null;
     }
 
     public PhoneNumber(int id, String workNumber, String privateNumber, String workNetwork, String privateNetwork) {
@@ -28,7 +33,6 @@ public class PhoneNumber extends Communicator{
         this.privateNetwork = new SimpleStringProperty(privateNetwork);
     }
 
-    @Override
     public int getId() {
         return id.get();
     }

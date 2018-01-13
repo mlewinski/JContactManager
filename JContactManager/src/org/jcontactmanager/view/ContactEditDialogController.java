@@ -61,20 +61,20 @@ public class ContactEditDialogController {
     public void setContact(Contact contact) {
 
         this.contact = contact;
-        if(this.contact != null){
+        if (this.contact != null) {
             nameField.setText(contact.getContactInformation().getName());
             nicknameField.setText(contact.getContactInformation().getNickname());
             genderField.setText(contact.getContactInformation().getGender());
             addressField.setText(contact.getContactInformation().getAddress());
             countryField.setText(contact.getContactInformation().getCountry());
-            privateEmailAddressField.setText(contact.getEmailAddress().getPrivateEmailAddress());
-            workEmailAddressField.setText(contact.getEmailAddress().getWorkEmailAddress());
+            privateEmailAddressField.setText(contact.getMessengers().getEmails().getPrivateEmailAddress());
+            workEmailAddressField.setText(contact.getMessengers().getEmails().getWorkEmailAddress());
             cityField.setText(contact.getContactInformation().getCity());
             websiteField.setText(contact.getContactInformation().getWebsite());
-            privatePhoneNumberField.setText(contact.getPhoneNumber().getPrivateNumber());
-            workPhoneNumberField.setText(contact.getPhoneNumber().getWorkNumber());
-            privateNetworkField.setText(contact.getPhoneNumber().getPrivateNetwork());
-            workNetworkField.setText(contact.getPhoneNumber().getWorkNetwork());
+            privatePhoneNumberField.setText(contact.getMessengers().getPhoneNumbers().getPrivateNumber());
+            workPhoneNumberField.setText(contact.getMessengers().getPhoneNumbers().getWorkNumber());
+            privateNetworkField.setText(contact.getMessengers().getPhoneNumbers().getPrivateNetwork());
+            workNetworkField.setText(contact.getMessengers().getPhoneNumbers().getWorkNetwork());
             noteField.setText(contact.getContactInformation().getNote());
         }
     }
@@ -85,32 +85,32 @@ public class ContactEditDialogController {
 
     //dodawanie
     @FXML
-    private void handleOK() throws SQLException,IOException{
+    private void handleOK() throws SQLException, IOException {
 
-            Random random = new Random();
-            int contactId = random.nextInt();
-            int communicatorId = random.nextInt();
+        Random random = new Random();
+        int contactId = random.nextInt();
+        int communicatorId = random.nextInt();
 
-            Contact contact = new Contact();
-            contact.setId(contactId);
-            contact.setContactInformation(new ContactInformation(contactId,nameField.getText(),nicknameField.getText(),genderField.getText(),addressField.getText(),
-                    cityField.getText(), countryField.getText(),noteField.getText(),websiteField.getText()));
-            contact.setEmailAddress(new Email(communicatorId,privateEmailAddressField.getText(),workEmailAddressField.getText(),noteField.getText()));
-            contact.setPhoneNumber(new PhoneNumber(communicatorId, workPhoneNumberField.getText(),privatePhoneNumberField.getText(),workNetworkField.getText(),privateNetworkField.getText()));
+        Contact contact = new Contact();
+        contact.setId(contactId);
+        contact.setContactInformation(new ContactInformation(contactId, nameField.getText(), nicknameField.getText(), genderField.getText(), addressField.getText(),
+                cityField.getText(), "countryField.getText()", noteField.getText(), websiteField.getText())); //dorobic countryField w interfejsie
+        contact.setEmailAddress(new Email(communicatorId, privateEmailAddressField.getText(), workEmailAddressField.getText(), noteField.getText()));
+        contact.setPhoneNumber(new PhoneNumber(communicatorId, workPhoneNumberField.getText(), privatePhoneNumberField.getText(), workNetworkField.getText(), privateNetworkField.getText()));
 
-            String contactInformationSQL = contact.getContactInformation().saveQuery();
-            String phoneNumberSQL = contact.getPhoneNumber().saveQuery();
-            String emailSQL = contact.getEmailAddress().saveQuery();
-            String contactSQL = contact.saveQuery();
+        String contactInformationSQL = contact.getContactInformation().saveQuery();
+        String phoneNumberSQL = contact.getPhoneNumber().saveQuery();
+        String emailSQL = contact.getEmailAddress().saveQuery();
+        String contactSQL = contact.saveQuery();
 
-            javaFxMain.setContactRepository(contactInformationSQL,phoneNumberSQL,emailSQL,contactSQL);
+        javaFxMain.setContactRepository(contactInformationSQL, phoneNumberSQL, emailSQL, contactSQL);
 
-            isClicked = true;
-            dialogStage.close();
-        }
+        isClicked = true;
+        dialogStage.close();
+    }
 
     @FXML
-    private void handleCancel(){
+    private void handleCancel() {
         dialogStage.close();
     }
 }

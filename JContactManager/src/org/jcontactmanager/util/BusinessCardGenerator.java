@@ -25,8 +25,8 @@ public class BusinessCardGenerator {
             Document doc = new Document(pdfDocument);
             doc.add(new Paragraph("\t\t\t" + ci.getName()));
             doc.add(new Paragraph("\t" + ci.getAddress()+", "+ci.getCity()+" "+ci.getCountry()));
-            doc.add(new Paragraph("\t" + contact.getEmailAddress().getWorkEmailAddress()));
-            doc.add(new Paragraph("\t" + contact.getPhoneNumber().getWorkNumber()));
+            doc.add(new Paragraph("\t" + contact.getMessengers().getEmails().getWorkEmailAddress()));
+            doc.add(new Paragraph("\t" + contact.getMessengers().getPhoneNumbers().getWorkNumber()));
             doc.close();
         }
         catch(IOException e){

@@ -1,18 +1,16 @@
 package org.jcontactmanager.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 /**
  * Created by mlewinski on 11/10/17.
  */
-public abstract class Communicator implements IStoreable {
+public class Messengers implements IStoreable {
     protected IntegerProperty id = new SimpleIntegerProperty();
     protected IntegerProperty ownerID = new SimpleIntegerProperty();
-    protected StringProperty label = new SimpleStringProperty();
     protected StringProperty note = new SimpleStringProperty();
+    protected ObjectProperty<Email> emails = new SimpleObjectProperty<>();
+    protected ObjectProperty<PhoneNumber> phoneNumbers = new SimpleObjectProperty<>();
 
     public int getId() {
         return id.get();
@@ -26,17 +24,16 @@ public abstract class Communicator implements IStoreable {
         this.id.set(id);
     }
 
-
-    public String getLabel() {
-        return label.get();
+    public int getOwnerId() {
+        return ownerID.get();
     }
 
-    public StringProperty getLabelProperty() {
-        return label;
+    public IntegerProperty getOwnerIdProperty() {
+        return ownerID;
     }
 
-    public void setLabel(String label) {
-        this.label.set(label);
+    public void setOwnerID(int id) {
+        this.ownerID.set(id);
     }
 
     public String getNote() {
@@ -51,4 +48,47 @@ public abstract class Communicator implements IStoreable {
         this.note.set(note);
     }
 
+    public Email getEmails() {
+        return emails.get();
+    }
+
+    public ObjectProperty getEmailsProperty() {
+        return emails;
+    }
+
+    public void setEmails(Email emails) {
+        this.emails.setValue(emails);
+    }
+
+    public PhoneNumber getPhoneNumbers() {
+        return phoneNumbers.get();
+    }
+
+    public ObjectProperty getPhoneNumbersProperty() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(PhoneNumber phoneNumbers) {
+        this.phoneNumbers.setValue(phoneNumbers);
+    }
+
+    @Override
+    public String saveQuery() {
+        return null;
+    }
+
+    @Override
+    public String updateQuery() {
+        return null;
+    }
+
+    @Override
+    public String deleteQuery() {
+        return null;
+    }
+
+    @Override
+    public String selectQuery() {
+        return null;
+    }
 }
