@@ -3,7 +3,6 @@ package org.jcontactmanager;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -13,11 +12,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jcontactmanager.model.*;
 import org.jcontactmanager.view.*;
-import sun.plugin.javascript.navig.Anchor;
 
 import java.io.*;
 import java.nio.file.Paths;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -233,19 +230,26 @@ public class JavaFxMain extends Application {
         }
     }
 
-    public void setContactRepository(String contact, String contactInformation, String email, String phoneNumber){
+    public void performRepositoryOperation(String contact, String contactInformation, String messenger, String email, String phoneNumber){
         try{
-            repository.save(contact);
-            repository.save(contactInformation);
-            repository.save(email);
-            repository.save(phoneNumber);
-        }catch (SQLException e)
-        {
-
-        }catch (IOException e){
-
+            repository.execute(contact);
+            repository.execute(contactInformation);
+            repository.execute(messenger);
+            repository.execute(email);
+            repository.execute(phoneNumber);
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Problem with the database");
+            alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (IOException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("The database config file cannot be accessed");
+            alert.setHeaderText("The application cannot find the database.properties file or it is inaccessible. Please generate a new config file using Settings.");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
-
     }
 
     public Stage getPrimaryStage(){
