@@ -36,7 +36,7 @@ public class ContactRepository {
 
 
     /**
-     * Save object to a database
+     * Perform operation on the object in a database
      *
      * @param sql SQL representation of an object
      * @throws SQLException

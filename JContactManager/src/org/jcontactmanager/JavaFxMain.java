@@ -42,7 +42,7 @@ public class JavaFxMain extends Application {
 
 
         initRootLayout();
-        if(applicationProperties!=null && (!applicationProperties.containsKey("env.first_run") || applicationProperties.getProperty("env.first_run")=="true")){
+        if(applicationProperties!=null && (!applicationProperties.containsKey("env.first_run") || applicationProperties.getProperty("env.first_run").equals("true"))){
             showSettings();
             try {
                 applicationProperties.setProperty("env.first_run", "false");
