@@ -6,7 +6,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.jcontactmanager.JavaFxMain;
 import org.jcontactmanager.model.Contact;
-import org.jcontactmanager.model.ContactInformation;
 import org.jcontactmanager.model.ContactRepository;
 
 import java.io.IOException;
@@ -82,21 +81,16 @@ public class ContactOverviewController {
 
             Contact deletedContact = new Contact();
             deletedContact.getId();
-            deletedContact.getPhoneNumber().getId();
-            deletedContact.getEmailAddress().getId();
+            deletedContact.getMessengers().getPhoneNumbers().getId();
+            deletedContact.getMessengers().getEmails().getId();
             deletedContact.getContactInformation();
+            this.javaFxMain.performRepositoryOperation(deletedContact.deleteQuery(),
+                    deletedContact.getContactInformation().deleteQuery(),
+                    deletedContact.getMessengers().deleteQuery(),
+                    deletedContact.getMessengers().getEmails().deleteQuery(),
+                    deletedContact.getMessengers().getPhoneNumbers().deleteQuery()
+                    );
 
-            try {
-                ContactRepository contactRepository = new ContactRepository();
-                contactRepository.save(deletedContact.deleteQuery());
-                contactRepository.save(deletedContact.getEmailAddress().deleteQuery());
-                contactRepository.save(deletedContact.getPhoneNumber().deleteQuery());
-                contactRepository.save(deletedContact.getContactInformation().deleteQuery());
-            }catch(SQLException e){
-
-            }catch (IOException e){
-
-            }
         }else {
             //Nothings selected
             Alert alert = new Alert(Alert.AlertType.WARNING);
