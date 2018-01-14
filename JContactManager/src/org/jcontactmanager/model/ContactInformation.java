@@ -148,9 +148,9 @@ public class ContactInformation implements IStoreable {
 
     @Override
     public String saveQuery() {
-        return sanitizeQuery("INSERT INTO ContactsInformations VALUES('" + this.id.getValue() + "','" + this.name.getValue()+ "','" + this.nickname.getValue()
+        return "INSERT INTO ContactsInformations (ID,Name,Nickname,Gender,Address,City,Country,Note,Website) VALUES('" + this.id.getValue() + "','" + this.name.getValue()+ "','" + this.nickname.getValue()
                 + "','" + this.gender.getValue() + "','" + this.address.getValue() + "','" + this.city.getValue() + "','" + this.country.getValue() + "','" + this.note.getValue()
-                + "','" + this.website.getValue()+"')");
+                + "','" + this.website.getValue()+"')";
     }
 
     @Override
@@ -163,7 +163,7 @@ public class ContactInformation implements IStoreable {
     @Override
     public String deleteQuery() {
         // TODO: Trzeba kasowac po id ponieważ jest ono wyswietlane w tabeli(kasowanie informacji jak i również update powinien zawierac ID )
-        return sanitizeQuery("DELETE FROM ContactsInformations WHERE ID="+this.id);
+        return "DELETE FROM ContactsInformations WHERE ID='"+this.id.getValue()+"'";
 
     }
 

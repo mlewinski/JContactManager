@@ -95,7 +95,7 @@ public class PhoneNumber implements IStoreable{
 
     @Override
     public String saveQuery() {
-        return sanitizeQuery("INSERT INTO PhoneNumbers VALUES('" + this.id.getValue() + "','" + this.privateNumber.getValue() + "','" + this.workNumber.getValue() + "','" + this.privateNetwork.getValue() + "','" + workNetwork.getValue() + "')");
+        return "INSERT INTO PhoneNumbers (ID,PrivateNumber,WorkNumber,PrivateNetwork,WorkNetwork)  VALUES('" + this.id.getValue() + "','" + this.privateNumber.getValue() + "','" + this.workNumber.getValue() + "','" + this.privateNetwork.getValue() + "','" + workNetwork.getValue() + "')";
     }
 
     @Override
@@ -106,7 +106,7 @@ public class PhoneNumber implements IStoreable{
 
     @Override
     public String deleteQuery() {
-        return sanitizeQuery("DELETE FROM PhoneNubmers WHERE ID=" + this.id);
+       return  "DELETE FROM PhoneNubmers WHERE ID='" + this.id+"'";
     }
 
     @Override

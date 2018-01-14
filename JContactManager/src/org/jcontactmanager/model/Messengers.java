@@ -86,7 +86,7 @@ public class Messengers implements IStoreable {
 
 
     public String saveQuery() {
-        return sanitizeQuery("INSERT INTO Messengers VALUES('" + this.id.getValue() + "','" + this.note.getValue() + "')");
+        return "INSERT INTO Messengers (ID, Note) VALUES('" + this.id.getValue() + "','" + this.note.getValue() + "')";
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Messengers implements IStoreable {
 
     @Override
     public String deleteQuery() {
-        return sanitizeQuery("DELETE FROM ID WHERE ID=" + this.id);
+        return "DELETE FROM ID WHERE ID='" + this.id.getValue()+"'";
     }
 
     @Override

@@ -26,7 +26,7 @@ public class Email implements IStoreable{
         this.workEmailAddress = null;
     }
 
-    public Email(int id, String privateEmailAddress, String workEmailAddress, String note) {
+    public Email(int id, String privateEmailAddress, String workEmailAddress) {
         this.id = new SimpleIntegerProperty(id);
         this.privateEmailAddress = new SimpleStringProperty(privateEmailAddress);
         this.workEmailAddress = new SimpleStringProperty(workEmailAddress);
@@ -70,7 +70,7 @@ public class Email implements IStoreable{
 
     @Override
     public String saveQuery(){
-        return sanitizeQuery("INSERT INTO Emails VALUES('" + this.id.getValue() + "','" + this.privateEmailAddress.getValue() + "','" + this.workEmailAddress.getValue() + "')");
+        return "INSERT INTO Emails VALUES('" + this.id.getValue() + "','" + this.privateEmailAddress.getValue() + "','" + this.workEmailAddress.getValue() + "')";
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Email implements IStoreable{
 
     @Override
     public String deleteQuery() {
-        return sanitizeQuery("DELETE FROM Emails WHERE ID =" + this.id + " AND PrivateEmailAddress=" + this.privateEmailAddress+ " AND WorkEmailAddress="+ this.workEmailAddress);
+        return "DELETE FROM Emails WHERE ID =" + this.id;
     }
 
     @Override

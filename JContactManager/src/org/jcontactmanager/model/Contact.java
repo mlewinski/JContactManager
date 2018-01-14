@@ -62,7 +62,7 @@ public class Contact implements IStoreable {
 
     @Override
     public String saveQuery(){
-        return sanitizeQuery("INSERT INTO Contacts VALUES('" + this.id + "','" + getContactInformation().getId()+"')");
+        return "INSERT INTO Contacts (ID) VALUES('" + this.id.getValue() + "')";
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Contact implements IStoreable {
 
     @Override
     public String deleteQuery() {
-        return sanitizeQuery("DELETE FROM Contacts WHERE ID =" + this.id);
+        return "DELETE FROM Contacts WHERE ID =" + this.id.getValue();
     }
 
     @Override

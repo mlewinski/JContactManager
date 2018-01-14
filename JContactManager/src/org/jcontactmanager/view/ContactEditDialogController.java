@@ -88,13 +88,13 @@ public class ContactEditDialogController {
     private void handleOK() throws SQLException, IOException {
 
         Random random = new Random();
-        int contactId = 2;
+        int contactId = random.nextInt();
 
         Contact contact = new Contact();
         contact.setId(contactId);
         contact.setContactInformation(new ContactInformation(contactId,nameField.getText(), nicknameField.getText(), genderField.getText(), addressField.getText(),
                 cityField.getText(), countryField.getText(), noteField.getText(), websiteField.getText()));
-        contact.setMessengers(new Messengers(contactId,"0",new Email(contactId, privateEmailAddressField.getText(), workEmailAddressField.getText(), noteField.getText()),
+        contact.setMessengers(new Messengers(contactId,"0",new Email(contactId, privateEmailAddressField.getText(), workEmailAddressField.getText()),
                                 new PhoneNumber(contactId, workPhoneNumberField.getText(), privatePhoneNumberField.getText(), workNetworkField.getText(), privateNetworkField.getText())));
 
         String contactInformationSQL = contact.getContactInformation().saveQuery();

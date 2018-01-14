@@ -45,7 +45,7 @@ public class ContactRepository {
      */
     public void execute(String sql) throws SQLException, IOException {
         try (Connection conn = getConnection(); Statement stm = conn.createStatement()) {
-            stm.executeUpdate(SqlTools.sanitizeQuery(sql));
+            stm.executeUpdate(sql);
         } catch (SQLException | IOException ex) {
             throw ex;
         }
