@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 28 Gru 2017, 12:41
--- Wersja serwera: 10.1.26-MariaDB-1
--- Wersja PHP: 7.1.12
+-- Czas generowania: 14 Sty 2018, 16:06
+-- Wersja serwera: 10.1.21-MariaDB
+-- Wersja PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,166 +17,106 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `nproject`
+-- Baza danych: `jcontactmanager`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `Communicators`
+-- Struktura tabeli dla tabeli `contacts`
 --
 
-CREATE TABLE `Communicators` (
-  `ID` int(11) NOT NULL,
-  `OwnerID` int(11) NOT NULL,
-  `Label` text COLLATE utf16_unicode_ci NOT NULL,
-  `Note` text COLLATE utf16_unicode_ci NOT NULL,
-  `Category` text COLLATE utf16_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+CREATE TABLE `contacts` (
+  `ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Zrzut danych tabeli `contacts`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `ContactInformations`
+-- Struktura tabeli dla tabeli `contactsinformations`
 --
 
-CREATE TABLE `ContactInformations` (
-  `ID` int(11) NOT NULL,
-  `OwnerID` int(11) NOT NULL,
-  `Name` text COLLATE utf16_unicode_ci NOT NULL,
-  `Address` text COLLATE utf16_unicode_ci NOT NULL,
-  `City` text COLLATE utf16_unicode_ci NOT NULL,
-  `Country` text COLLATE utf16_unicode_ci NOT NULL,
-  `Note` text COLLATE utf16_unicode_ci NOT NULL,
-  `Website` text COLLATE utf16_unicode_ci NOT NULL,
-  `Nickname` text COLLATE utf16_unicode_ci NOT NULL,
-  `Gender` text COLLATE utf16_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+CREATE TABLE `contactsinformations` (
+  `Name` varchar(50) NOT NULL,
+  `Nickname` varchar(50) NOT NULL,
+  `Gender` varchar(50) NOT NULL,
+  `Address` varchar(80) NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Country` varchar(40) NOT NULL,
+  `Note` text NOT NULL,
+  `Website` varchar(100) NOT NULL,
+  `ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Zrzut danych tabeli `ContactInformations`
+-- Zrzut danych tabeli `contactsinformations`
 --
 
-INSERT INTO `ContactInformations` (`ID`, `OwnerID`, `Name`, `Address`, `City`, `Country`, `Note`, `Website`, `Nickname`, `Gender`) VALUES
-(1, 0, 'Stefan HelloWorld', 'Programistów 4', 'Kraków', 'Polska', 'Jakiś dziwny typ', 'www.geeksforgeeks.org', 'Koder', 'M');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `Contacts`
+-- Struktura tabeli dla tabeli `emails`
 --
 
-CREATE TABLE `Contacts` (
+CREATE TABLE `emails` (
   `ID` int(11) NOT NULL,
-  `OwnerID` int(11) NOT NULL COMMENT 'For future use'
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+  `PrivateEmailAddress` varchar(50) NOT NULL,
+  `WorkEmailAddress` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Zrzut danych tabeli `Contacts`
+-- Zrzut danych tabeli `emails`
 --
-
-INSERT INTO `Contacts` (`ID`, `OwnerID`) VALUES
-(0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `Emails`
+-- Struktura tabeli dla tabeli `messengers`
 --
 
-CREATE TABLE `Emails` (
+CREATE TABLE `messengers` (
   `ID` int(11) NOT NULL,
-  `EmailAddress` text COLLATE utf16_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+  `Note` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Zrzut danych tabeli `messengers`
+--
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `GenericComms`
+-- Struktura tabeli dla tabeli `phonenumbers`
 --
 
-CREATE TABLE `GenericComms` (
+CREATE TABLE `phonenumbers` (
   `ID` int(11) NOT NULL,
-  `Address` text COLLATE utf16_unicode_ci NOT NULL,
-  `Protocol` text COLLATE utf16_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
-
--- --------------------------------------------------------
+  `PrivateNumber` varchar(30) NOT NULL,
+  `WorkNumber` varchar(30) NOT NULL,
+  `PrivateNetwork` varchar(30) NOT NULL,
+  `WorkNetwork` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Struktura tabeli dla tabeli `PhoneNumbers`
+-- Zrzut danych tabeli `phonenumbers`
 --
-
-CREATE TABLE `PhoneNumbers` (
-  `ID` int(11) NOT NULL,
-  `Number` text COLLATE utf16_unicode_ci NOT NULL,
-  `Network` text COLLATE utf16_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
--- Indexes for table `Communicators`
+-- Indexes for table `contacts`
 --
-ALTER TABLE `Communicators`
-  ADD PRIMARY KEY (`ID`);
-
 --
--- Indexes for table `ContactInformations`
---
-ALTER TABLE `ContactInformations`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `Contacts`
---
-ALTER TABLE `Contacts`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `Emails`
---
-ALTER TABLE `Emails`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `GenericComms`
---
-ALTER TABLE `GenericComms`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `PhoneNumbers`
---
-ALTER TABLE `PhoneNumbers`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Ograniczenia dla zrzutów tabel
 --
 
 --
--- AUTO_INCREMENT dla tabeli `ContactInformations`
---
-ALTER TABLE `ContactInformations`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT dla tabeli `Emails`
---
-ALTER TABLE `Emails`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT dla tabeli `GenericComms`
---
-ALTER TABLE `GenericComms`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT dla tabeli `PhoneNumbers`
---
-ALTER TABLE `PhoneNumbers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- Ograniczenia dla tabeli `phonenumbers`
+-
