@@ -223,6 +223,7 @@ public class JavaFxMain extends Application {
             Pane statisticsOverview = (Pane) loader.load();
             StatisticsController statisticsController = loader.getController();
             statisticsController.setJavaFxMain(this);
+            statisticsController.showStatistics();
             rootLayoutController.setPathLabel("Statistics");
             rootLayout.setCenter(statisticsOverview);
         }catch (IOException e)
