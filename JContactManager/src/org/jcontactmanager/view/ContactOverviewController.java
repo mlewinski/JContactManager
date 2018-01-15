@@ -71,7 +71,7 @@ public class ContactOverviewController {
     }
 
     @FXML
-    private void handleDeletePerson(){
+    public void handleDeletePerson(){
         int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0){
             Contact deletedContact = contactTable.getSelectionModel().getSelectedItem();
@@ -93,10 +93,6 @@ public class ContactOverviewController {
 
             alert.showAndWait();
         }
-    }
-
-    public void deleteSelectedContact(){
-        handleDeletePerson();
     }
 
     public void setJavaFxMain(JavaFxMain javaFxMain) {

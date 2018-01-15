@@ -109,10 +109,14 @@ public class ContactEditDialogController {
         String messengerSQL = contact.getMessengers().saveQuery();
 
         javaFxMain.performRepositoryOperation(contactSQL,contactInformationSQL,messengerSQL,emailSQL,phoneNumberSQL);
-
         javaFxMain.getContactInformationData().add(contact);
-        if(isEditClicked)
-
+        if(isEditClicked){
+            javaFxMain.performRepositoryOperation(this.contact.deleteQuery(),this.contact.getContactInformation().deleteQuery()
+                    ,this.contact.getMessengers().deleteQuery()
+                    ,this.contact.getMessengers().getEmails().deleteQuery()
+                    ,this.contact.getMessengers().getPhoneNumbers().deleteQuery());
+            javaFxMain.getContactInformationData().remove(this.contact);
+        }
         isClicked = true;
         dialogStage.close();
 
