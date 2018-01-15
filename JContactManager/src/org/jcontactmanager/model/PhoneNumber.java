@@ -101,7 +101,7 @@ public class PhoneNumber implements IStoreable{
 
     @Override
     public String deleteQuery() {
-       return  "DELETE FROM PhoneNubmers WHERE ID='" + this.id+"'";
+       return  "DELETE FROM PhoneNumbers WHERE ID=" + this.id.getValue();
     }
 
     @Override

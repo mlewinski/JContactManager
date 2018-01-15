@@ -77,7 +77,7 @@ public class Email implements IStoreable{
 
     @Override
     public String deleteQuery() {
-        return "DELETE FROM Emails WHERE ID =" + this.id;
+        return "DELETE FROM Emails WHERE ID =" + this.id.getValue();
     }
 
     @Override

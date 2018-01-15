@@ -22,8 +22,7 @@ public class ContactInformation implements IStoreable {
     private StringProperty note = new SimpleStringProperty();
     private StringProperty website = new SimpleStringProperty();
 
-    public ContactInformation() {
-        this(0,null,null,null,null,null,null,null,null);
+    public ContactInformation(){
     }
 
     public ContactInformation(int id, String name, String nickname, String gender, String address, String city, String country, String note, String website) {
@@ -163,7 +162,7 @@ public class ContactInformation implements IStoreable {
     @Override
     public String deleteQuery() {
         // TODO: Trzeba kasowac po id ponieważ jest ono wyswietlane w tabeli(kasowanie informacji jak i również update powinien zawierac ID )
-        return "DELETE FROM ContactsInformations WHERE ID='"+this.id.getValue()+"'";
+        return "DELETE FROM ContactsInformations WHERE ID="+this.id.getValue();
 
     }
 

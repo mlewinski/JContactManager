@@ -45,6 +45,7 @@ public class ContactEditDialogController {
     private JavaFxMain javaFxMain;
     private Contact contact;
     private boolean isClicked = false;
+    private boolean isEditClicked = false;
 
     public void setJavaFxMain(JavaFxMain javaFxMain) {
         this.javaFxMain = javaFxMain;
@@ -76,7 +77,11 @@ public class ContactEditDialogController {
             privateNetworkField.setText(contact.getMessengers().getPhoneNumbers().getPrivateNetwork());
             workNetworkField.setText(contact.getMessengers().getPhoneNumbers().getWorkNetwork());
             noteField.setText(contact.getContactInformation().getNote());
+
+            isEditClicked = true;
         }
+        else
+            isEditClicked = false;
     }
 
     public boolean isClicked() {
@@ -105,8 +110,12 @@ public class ContactEditDialogController {
 
         javaFxMain.performRepositoryOperation(contactSQL,contactInformationSQL,messengerSQL,emailSQL,phoneNumberSQL);
 
+        javaFxMain.getContactInformationData().add(contact);
+        if(isEditClicked)
+
         isClicked = true;
         dialogStage.close();
+
     }
 
     @FXML

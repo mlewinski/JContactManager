@@ -96,7 +96,7 @@ public class Messengers implements IStoreable {
 
     @Override
     public String deleteQuery() {
-        return "DELETE FROM ID WHERE ID='" + this.id.getValue()+"'";
+        return "DELETE FROM Messengers WHERE ID="+ this.id.getValue();
     }
 
     @Override

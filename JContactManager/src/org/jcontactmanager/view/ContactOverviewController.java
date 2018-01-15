@@ -36,13 +36,13 @@ public class ContactOverviewController {
 
     @FXML
     private void initialize(){
-        //idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty()); //parse to other
-        nicknameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNicknameProperty());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNameProperty());
-        genderColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getGenderProperty());
-        cityColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getCityProperty());
-        countryColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getCountryProperty());
-        websiteColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getWebsiteProperty());
+            //idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty()); //parse to other
+            nicknameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNicknameProperty());
+            nameColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getNameProperty());
+            genderColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getGenderProperty());
+            cityColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getCityProperty());
+            countryColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getCountryProperty());
+            websiteColumn.setCellValueFactory(cellData -> cellData.getValue().getContactInformation().getWebsiteProperty());
 
     }
 
@@ -50,16 +50,13 @@ public class ContactOverviewController {
     @FXML
     private void handleNewContact()
     {
-        Contact tempContact = new Contact();
         boolean okClicked = javaFxMain.showContactEditingDialog(null); //TODO: Zmienic nulla na tempcontact
-        if(okClicked){
-            javaFxMain.getContactInformationData().add(tempContact);
-        }
     }
 
     @FXML
     private void handleEditContact(){
         Contact selectedContact = contactTable.getSelectionModel().getSelectedItem();
+
         if(selectedContact != null){
             boolean okClicked = javaFxMain.showContactEditingDialog(selectedContact);
         }else
@@ -77,13 +74,8 @@ public class ContactOverviewController {
     private void handleDeletePerson(){
         int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0){
+            Contact deletedContact = contactTable.getSelectionModel().getSelectedItem();
             contactTable.getItems().remove(selectedIndex);
-
-            Contact deletedContact = new Contact();
-            deletedContact.getId();
-            deletedContact.getMessengers().getPhoneNumbers().getId();
-            deletedContact.getMessengers().getEmails().getId();
-            deletedContact.getContactInformation();
             this.javaFxMain.performRepositoryOperation(deletedContact.deleteQuery(),
                     deletedContact.getContactInformation().deleteQuery(),
                     deletedContact.getMessengers().deleteQuery(),
@@ -101,6 +93,10 @@ public class ContactOverviewController {
 
             alert.showAndWait();
         }
+    }
+
+    public void deleteSelectedContact(){
+        handleDeletePerson();
     }
 
     public void setJavaFxMain(JavaFxMain javaFxMain) {

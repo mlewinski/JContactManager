@@ -177,7 +177,6 @@ public class JavaFxMain extends Application {
 
             //Show the dialog
             dialogStage.showAndWait();
-
             return controller.isClicked();
         }catch (IOException e){
             e.printStackTrace();
