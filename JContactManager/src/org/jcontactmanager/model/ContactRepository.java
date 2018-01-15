@@ -100,18 +100,18 @@ public class ContactRepository {
                         while (messengers.next()) {
                             Messengers msg = new Messengers();
                             Email email = new Email();
-                            email.setId(messengers.getInt("ID"));
+                            email.setId(contactID);
                             email.setPrivateEmailAddress(messengers.getString("PrivateEmailAddress"));
                             email.setWorkEmailAddress(messengers.getString("WorkEmailAddress"));
                             msg.setEmails(email);
                             PhoneNumber phoneNumber = new PhoneNumber();
-                            phoneNumber.setId(messengers.getInt("ID"));
-                            phoneNumber.setPrivateNumber(messengers.getString("PrivatePhoneNumber"));
-                            phoneNumber.setPrivateNetwork(messengers.getString("PrivatePhoneNetwork"));
-                            phoneNumber.setWorkNumber(messengers.getString("WorkPhoneNumber"));
-                            phoneNumber.setWorkNetwork(messengers.getString("WorkPhoneNetwork"));
+                            phoneNumber.setId(contactID);
+                            phoneNumber.setPrivateNumber(messengers.getString("PrivateNumber"));
+                            phoneNumber.setPrivateNetwork(messengers.getString("PrivateNetwork"));
+                            phoneNumber.setWorkNumber(messengers.getString("WorkNumber"));
+                            phoneNumber.setWorkNetwork(messengers.getString("WorkNetwork"));
                             msg.setPhoneNumbers(phoneNumber);
-                            msg.setId(messengers.getInt("ID"));
+                            msg.setId(contactID);
                             msg.setNote(messengers.getString("Note"));
                             newContact.setMessengers(msg);
                         }

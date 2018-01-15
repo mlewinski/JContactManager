@@ -21,9 +21,6 @@ public class Email implements IStoreable{
     private StringProperty workEmailAddress = new SimpleStringProperty();
 
     public Email() {
-        this.id = null;
-        this.privateEmailAddress = null;
-        this.workEmailAddress = null;
     }
 
     public Email(int id, String privateEmailAddress, String workEmailAddress) {

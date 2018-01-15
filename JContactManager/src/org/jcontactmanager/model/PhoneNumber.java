@@ -18,11 +18,6 @@ public class PhoneNumber implements IStoreable{
     private StringProperty privateNetwork = new SimpleStringProperty();
 
     public PhoneNumber() {
-        this.id = null;
-        this.workNumber = null;
-        this.workNetwork = null;
-        this.privateNumber = null;
-        this.privateNetwork = null;
     }
 
     public PhoneNumber(int id, String workNumber, String privateNumber, String workNetwork, String privateNetwork) {
