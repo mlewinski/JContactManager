@@ -22,7 +22,7 @@
         </rowConstraints>
          <children>
             <PieChart fx:id="genderChart" title="Gender Statistics" />
-            <BarChart fx:id="cityChart" title="City Statistics" GridPane.columnIndex="1">
+            <BarChart fx:id="cityChart" styleClass="bar-chart" title="City Statistics" GridPane.columnIndex="1">
               <xAxis>
                 <CategoryAxis fx:id="cityChartXAxis" side="BOTTOM" />
               </xAxis>
@@ -30,7 +30,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <BarChart fx:id="countryChart" title="Country Statistics" GridPane.rowIndex="1">
+            <BarChart fx:id="countryChart" style="-fx-bar-fill: rgba(20,20,130,1);" styleClass="bar-chart" title="Country Statistics" GridPane.rowIndex="1">
               <xAxis>
                 <CategoryAxis fx:id="countryChartXAxis" side="BOTTOM" />
               </xAxis>
