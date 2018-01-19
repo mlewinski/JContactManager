@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import org.jcontactmanager.JavaFxMain;
 import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactRepository;
+import org.jcontactmanager.util.BusinessCardGenerator;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -109,6 +110,13 @@ public class ContactOverviewController {
             }
         }
 
+    }
+
+    @FXML
+    private void handleGenerateBussinessCard(){
+        BusinessCardGenerator businessCardGenerator = new BusinessCardGenerator();
+        businessCardGenerator.generateBusinessCard(contactTable.getSelectionModel().getSelectedItem(),
+                "/"+contactTable.getSelectionModel().getSelectedItem().getContactInformation().getName()+".pdf");
     }
 
 

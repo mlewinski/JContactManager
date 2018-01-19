@@ -13,9 +13,9 @@
          <content>
             <TableView fx:id="contactTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="339.0" prefWidth="723.0" stylesheets="@styles/DarkTheme.css">
                 <columns>
-                <TableColumn fx:id="idColumn" minWidth="20.0" prefWidth="75.0" text="#" />
-                  <TableColumn fx:id="nicknameColumn" minWidth="50.0" prefWidth="100.0" text="Nickname" />
+                <TableColumn fx:id="idColumn" minWidth="20.0" prefWidth="75.0" text="#" visible="false" />
                 <TableColumn fx:id="nameColumn" minWidth="50.0" prefWidth="100.0" text="Name" />
+                  <TableColumn fx:id="nicknameColumn" minWidth="50.0" prefWidth="100.0" text="Nickname" />
                   <TableColumn fx:id="genderColumn" minWidth="50.0" prefWidth="100.0" text="Gender" />
                   <TableColumn fx:id="cityColumn" minWidth="50.0" prefWidth="100.0" text="City" />
                   <TableColumn fx:id="countryColumn" minWidth="50.0" prefWidth="100.0" text="Country" />
@@ -24,10 +24,11 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="addNewButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNewContact" prefHeight="30.0" prefWidth="115.0" text="Add new" />
-      <Button fx:id="searchButton" layoutX="419.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearchContact" prefHeight="30.0" prefWidth="115.0" text="Search" />
-      <Button fx:id="editButton" layoutX="136.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleEditContact" prefHeight="30.0" prefWidth="115.0" text="Edit" />
-      <Button layoutX="262.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleDeletePerson" prefHeight="29.0" prefWidth="115.0" text="Delete" />
-      <TextField fx:id="searchContact" layoutX="545.0" layoutY="11.0" prefHeight="37.0" prefWidth="176.0" promptText="Name" />
+      <Button fx:id="addNewButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleNewContact" prefHeight="30.0" prefWidth="104.0" text="Add new" />
+      <Button fx:id="searchButton" layoutX="469.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearchContact" prefHeight="30.0" prefWidth="94.0" text="Search" />
+      <Button fx:id="editButton" layoutX="123.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleEditContact" prefHeight="30.0" prefWidth="104.0" text="Edit" />
+      <Button fx:id="deleteButton" layoutX="234.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleDeletePerson" prefHeight="29.0" prefWidth="104.0" text="Delete" />
+      <Button fx:id="generateButton" layoutX="347.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleGenerateBussinessCard" prefHeight="29.0" prefWidth="112.0" text="Generate" />
+      <TextField fx:id="searchContact" layoutX="570.0" layoutY="11.0" prefHeight="37.0" prefWidth="169.0" promptText="Name" />
    </children>
 </AnchorPane>
