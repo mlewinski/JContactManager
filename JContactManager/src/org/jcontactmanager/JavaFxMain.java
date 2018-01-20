@@ -37,6 +37,10 @@ public class JavaFxMain extends Application {
 
     private RootLayoutController rootLayoutController;
 
+    /**
+     * Set application properties and start primary Stage
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -91,6 +95,10 @@ public class JavaFxMain extends Application {
         }
     }
 
+    /**
+     * Return list with information about Contact
+     * @return contactInformationData
+     */
     public ObservableList<Contact> getContactInformationData() {
         return contactInformationData;
     }
@@ -125,7 +133,6 @@ public class JavaFxMain extends Application {
             //Show the scene containing root layout
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
-            //TODO: Controller to RootLayout
 
             primaryStage.show();
         }catch (IOException e)
@@ -137,7 +144,9 @@ public class JavaFxMain extends Application {
         }
     }
 
-
+    /**
+     * Load stage with contact information
+     */
     public void showContactOverview(){
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -153,7 +162,11 @@ public class JavaFxMain extends Application {
     }
 
 
-
+    /**
+     * Get selected contact and return with current values
+     * @param contact
+     * @return boolean value
+     */
     public boolean showContactEditingDialog(Contact contact)
     {
         try{
@@ -185,6 +198,9 @@ public class JavaFxMain extends Application {
 
     }
 
+    /**
+     * Load new stage with setting
+     */
     public void showSettings(){
         try{
             FXMLLoader loader = new FXMLLoader();
@@ -203,6 +219,9 @@ public class JavaFxMain extends Application {
         }
     }
 
+    /**
+     * Load new stage with home
+     */
     public void showHome() {
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -232,6 +251,14 @@ public class JavaFxMain extends Application {
         }
     }
 
+    /**
+     * Perform operation on database
+     * @param contact
+     * @param contactInformation
+     * @param messenger
+     * @param email
+     * @param phoneNumber
+     */
     public void performRepositoryOperation(String contact, String contactInformation, String messenger, String email, String phoneNumber){
         try{
             repository.execute(contact);

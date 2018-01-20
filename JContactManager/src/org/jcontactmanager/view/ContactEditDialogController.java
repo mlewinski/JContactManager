@@ -47,6 +47,7 @@ public class ContactEditDialogController {
     private boolean isClicked = false;
     private boolean isEditClicked = false;
 
+
     public void setJavaFxMain(JavaFxMain javaFxMain) {
         this.javaFxMain = javaFxMain;
     }
@@ -54,11 +55,20 @@ public class ContactEditDialogController {
     private void initialize() {
     }
 
+    /**
+     * Set dialog Stage
+     * @param dialogStage
+     */
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
 
+    /**
+     * Load contact to edit dialog or create new contact
+     * @param contact
+     */
     public void setContact(Contact contact) {
 
         this.contact = contact;
@@ -88,7 +98,11 @@ public class ContactEditDialogController {
         return isClicked;
     }
 
-    //dodawanie
+    /**
+     * Add new contact to DB and table after click OK
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML
     private void handleOK() throws SQLException, IOException {
 

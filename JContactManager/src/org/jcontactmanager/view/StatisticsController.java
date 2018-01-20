@@ -48,6 +48,9 @@ public class StatisticsController {
 
     }
 
+    /**
+     * Show statistic (Gender, Network, City, Coutry)
+     */
     public void showStatistics(){
         contactInformationData = javaFxMain.getContactInformationData();
         for(Contact c : contactInformationData){

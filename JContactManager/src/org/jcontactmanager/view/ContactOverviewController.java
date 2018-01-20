@@ -50,11 +50,17 @@ public class ContactOverviewController {
     }
 
 
+    /**
+     * Create new Contact
+     */
     @FXML
     private void handleNewContact() {
-        boolean okClicked = javaFxMain.showContactEditingDialog(null); //TODO: Zmienic nulla na tempcontact
+        boolean okClicked = javaFxMain.showContactEditingDialog(null);
     }
 
+    /**
+     * Edit selected Contact
+     */
     @FXML
     private void handleEditContact() {
         Contact selectedContact = contactTable.getSelectionModel().getSelectedItem();
@@ -71,6 +77,9 @@ public class ContactOverviewController {
         }
     }
 
+    /**
+     * Delete selected Contact
+     */
     @FXML
     public void handleDeletePerson() {
         int selectedIndex = contactTable.getSelectionModel().getSelectedIndex();
@@ -96,6 +105,9 @@ public class ContactOverviewController {
         }
     }
 
+    /**
+     * Search contact using name column
+     */
     @FXML
     private void handleSearchContact() {
         contactTable.getSelectionModel().clearSelection();
@@ -112,6 +124,9 @@ public class ContactOverviewController {
 
     }
 
+    /**
+     * Generate contact Bussiness Card
+     */
     @FXML
     private void handleGenerateBussinessCard(){
         BusinessCardGenerator businessCardGenerator = new BusinessCardGenerator();

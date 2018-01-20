@@ -51,6 +51,9 @@ public class SettingsController {
         }
     }
 
+    /**
+     * Save settings
+     */
     @FXML
     private void handleSave(){
         try {
