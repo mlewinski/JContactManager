@@ -116,7 +116,7 @@ public class ContactOverviewController {
     private void handleGenerateBussinessCard(){
         BusinessCardGenerator businessCardGenerator = new BusinessCardGenerator();
         businessCardGenerator.generateBusinessCard(contactTable.getSelectionModel().getSelectedItem(),
-                "/"+contactTable.getSelectionModel().getSelectedItem().getContactInformation().getName()+".pdf");
+                System.getProperty("user.home")+"/"+contactTable.getSelectionModel().getSelectedItem().getContactInformation().getName()+".pdf");
     }
 
 

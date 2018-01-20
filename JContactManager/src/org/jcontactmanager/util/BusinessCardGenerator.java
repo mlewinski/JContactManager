@@ -8,6 +8,7 @@ import org.jcontactmanager.model.Contact;
 import org.jcontactmanager.model.ContactInformation;
 import org.slf4j.*;
 
+import java.io.File;
 import java.io.IOException;
 
 
