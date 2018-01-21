@@ -47,6 +47,9 @@ public class ContactRepository {
         try (Connection conn = getConnection(); Statement stm = conn.createStatement()) {
             stm.executeUpdate(sql);
         } catch (SQLException | IOException ex) {
+            try{
+                JcmLogger.LogError(ex.getMessage());
+            } catch(IOException e){}
             throw ex;
         }
     }
@@ -59,25 +62,21 @@ public class ContactRepository {
             fetchAllContacts();
         } catch (SQLException e) {
             try {
-                logger.LogError(e.getMessage());
-            } catch (IOException superException) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Super Exception Occurred");
-                alert.setHeaderText("The application has encountered super error while trying to access the log file. Application cannot continue. Check permissions of logs directory.");
-                alert.setContentText(superException.getMessage());
-                alert.showAndWait();
-                System.exit(-1);
-            }
+                JcmLogger.LogError(e.getMessage());
+            } catch (IOException ex) {}
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Problem with the database");
             alert.setHeaderText("The application has encountered error with the database. It is not possible for the application to continue. Please refer to the information below.");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-        } catch (IOException ex) {
+        } catch (IOException e) {
+            try{
+                JcmLogger.LogError(e.getMessage());
+            } catch(IOException ex){}
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("The database config file cannot be accessed");
             alert.setHeaderText("The application cannot find the database.properties file or it is inaccessible. Please generate a new config file using Settings.");
-            alert.setContentText(ex.getMessage());
+            alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
     }
@@ -91,7 +90,12 @@ public class ContactRepository {
     private void fetchAllContacts() throws SQLException, IOException {
         try (Connection conn = getConnection(); Statement stm = conn.createStatement()) {
             try (ResultSet contacts = stm.executeQuery("SELECT * FROM `Contacts` ")) {
-                if (contacts == null) return;
+                if (contacts == null) {
+                    try{
+                        JcmLogger.LogMessage("0 contacts found in the database");
+                    } catch(IOException ex){}
+                    return;
+                }
                 while (contacts.next()) {
                     Contact newContact = new Contact();
                     int contactID = contacts.getInt("ID");
