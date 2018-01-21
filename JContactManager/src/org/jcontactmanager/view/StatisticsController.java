@@ -36,8 +36,6 @@ public class StatisticsController {
     @FXML
     private PieChart networkChart;
 
-    private ObservableMap<String, Integer> cityCount = FXCollections.observableHashMap();
-    private ObservableMap<String, Integer> countryCount = FXCollections.observableHashMap();
 
     public void setJavaFxMain(JavaFxMain javaFxMain) {
         this.javaFxMain = javaFxMain;
@@ -52,26 +50,55 @@ public class StatisticsController {
      * Show statistic (Gender, Network, City, Coutry)
      */
     public void showStatistics(){
+
+        ObservableMap<String, Integer> cityCount = FXCollections.observableHashMap();
+        ObservableMap<String, Integer> countryCount = FXCollections.observableHashMap();
+        ObservableMap<String, Integer> networkCount = FXCollections.observableHashMap();
         contactInformationData = javaFxMain.getContactInformationData();
         for(Contact c : contactInformationData){
             cityCount.put(c.getContactInformation().getCity(), cityCount.getOrDefault(c.getContactInformation().getCity(), 0)+1);
             countryCount.put(c.getContactInformation().getCountry(), cityCount.getOrDefault(c.getContactInformation().getCountry(), 0)+1);
+            networkCount.put(c.getMessengers().getPhoneNumbers().getPrivateNetwork(), networkCount.getOrDefault(c.getMessengers().getPhoneNumbers().getPrivateNetwork(),0)+1);
         }
         Set<String> cities = cityCount.keySet();
         cityChartXAxis.setCategories(FXCollections.observableArrayList(cityCount.keySet().toArray(new String[cities.size()])));
         Set<String> countries = countryCount.keySet();
         countryChartXAxis.setCategories(FXCollections.observableArrayList(countryCount.keySet().toArray(new String[countries.size()])));
-        XYChart.Series<String, Integer> citiesSeries = new XYChart.Series<>();
         for(String city : cities){
-            citiesSeries.getData().add(new XYChart.Data<>(city, cityCount.get(city)));
+            XYChart.Series<String, Integer> tmp = new XYChart.Series<>();
+            tmp.getData().add(new XYChart.Data<>(city, cityCount.get(city)));
+            cityChart.getData().add(tmp);
         }
-        cityChart.getData().add(citiesSeries);
         XYChart.Series<String, Integer> countriesSeries = new XYChart.Series<>();
         for(String country : countries){
-            countriesSeries.getData().add(new XYChart.Data<>(country, countryCount.get(country)));
+            XYChart.Series<String, Integer> tmp = new XYChart.Series<>();
+            tmp.getData().add(new XYChart.Data<>(country, countryCount.get(country)));
+            countryChart.getData().add(tmp);
         }
-        countryChart.getData().add(countriesSeries);
         //todo: gender chart, mobile network chart
+        int femaleCount =0, maleCount = 0, other = 0;
+        for(Contact c : contactInformationData){
+            if(c.getContactInformation().getGender().equals("female")){
+                femaleCount++;
+                continue;
+            }
+            if(c.getContactInformation().getGender().equals("male")){
+                maleCount++;
+                continue;
+            }
+            other++;
+        }
+        ObservableList<PieChart.Data> genders = FXCollections.observableArrayList(
+                new PieChart.Data("male", maleCount),
+                new PieChart.Data("female", femaleCount),
+                new PieChart.Data("other", other)
+        );
+        for(PieChart.Data d : genders)
+            genderChart.getData().add(d);
 
+        Set<String> networks = networkCount.keySet();
+        for(String n : networks){
+            networkChart.getData().add(new PieChart.Data(n, networkCount.get(n)));
+        }
     }
 }
