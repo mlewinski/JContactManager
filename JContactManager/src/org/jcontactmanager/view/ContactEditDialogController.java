@@ -2,6 +2,7 @@ package org.jcontactmanager.view;
 
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.jcontactmanager.JavaFxMain;
@@ -39,7 +40,7 @@ public class ContactEditDialogController {
     @FXML
     private TextField workEmailAddressField;
     @FXML
-    private TextField noteField;
+    private TextArea noteField;
 
     private Stage dialogStage;
     private JavaFxMain javaFxMain;

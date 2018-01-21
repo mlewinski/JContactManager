@@ -295,3 +295,13 @@
     -fx-fill: #ffffff;
     -fx-font-size: 1em;
 }
+
+.text-field{
+    -fx-background-color : rgba(44,44,44,0.7);
+    -fx-text-fill : #ffffff;
+}
+
+.text-area, .text-area .content{
+    -fx-background-color : rgba(44,44,44,0.9);
+    -fx-text-fill : #6fffff;
+}
